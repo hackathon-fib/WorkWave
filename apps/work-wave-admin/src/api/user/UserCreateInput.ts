@@ -1,8 +1,8 @@
-import { DayScheduleWhereUniqueInput } from "../daySchedule/DayScheduleWhereUniqueInput";
+import { DayScheduleCreateNestedManyWithoutUsersInput } from "./DayScheduleCreateNestedManyWithoutUsersInput";
 import { InputJsonValue } from "../../types";
 
 export type UserCreateInput = {
-  daySchedules?: DayScheduleWhereUniqueInput | null;
+  daySchedules?: DayScheduleCreateNestedManyWithoutUsersInput;
   firstName?: string | null;
   lastName?: string | null;
   password: string;

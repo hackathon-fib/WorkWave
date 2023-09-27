@@ -1,9 +1,9 @@
-import { DayScheduleWhereUniqueInput } from "../daySchedule/DayScheduleWhereUniqueInput";
+import { DayScheduleListRelationFilter } from "../daySchedule/DayScheduleListRelationFilter";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
 
 export type UserWhereInput = {
-  daySchedules?: DayScheduleWhereUniqueInput;
+  daySchedules?: DayScheduleListRelationFilter;
   firstName?: StringNullableFilter;
   id?: StringFilter;
   lastName?: StringNullableFilter;

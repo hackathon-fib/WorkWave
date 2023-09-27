@@ -4,11 +4,10 @@ import {
   Create,
   SimpleForm,
   CreateProps,
-  ReferenceInput,
-  SelectInput,
+  ReferenceArrayInput,
+  SelectArrayInput,
   TextInput,
   PasswordInput,
-  SelectArrayInput,
 } from "react-admin";
 
 import { DayScheduleTitle } from "../daySchedule/DayScheduleTitle";
@@ -18,13 +17,14 @@ export const UserCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
-        <ReferenceInput
-          source="daySchedules.id"
+        <ReferenceArrayInput
+          source="daySchedules"
           reference="DaySchedule"
-          label="DaySchedules"
+          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+          format={(value: any) => value && value.map((v: any) => v.id)}
         >
-          <SelectInput optionText={DayScheduleTitle} />
-        </ReferenceInput>
+          <SelectArrayInput optionText={DayScheduleTitle} />
+        </ReferenceArrayInput>
         <TextInput label="First Name" source="firstName" />
         <TextInput label="Last Name" source="lastName" />
         <PasswordInput label="Password" source="password" />

@@ -1,25 +1,28 @@
 import * as React from "react";
+
 import {
   Create,
   SimpleForm,
   CreateProps,
-  ReferenceInput,
-  SelectInput,
+  ReferenceArrayInput,
+  SelectArrayInput,
   TextInput,
 } from "react-admin";
+
 import { DayScheduleTitle } from "../daySchedule/DayScheduleTitle";
 
 export const StatusCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
-        <ReferenceInput
-          source="daySchedules.id"
+        <ReferenceArrayInput
+          source="daySchedules"
           reference="DaySchedule"
-          label="DaySchedules"
+          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+          format={(value: any) => value && value.map((v: any) => v.id)}
         >
-          <SelectInput optionText={DayScheduleTitle} />
-        </ReferenceInput>
+          <SelectArrayInput optionText={DayScheduleTitle} />
+        </ReferenceArrayInput>
         <TextInput label="Name" source="name" />
       </SimpleForm>
     </Create>

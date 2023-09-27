@@ -1,8 +1,8 @@
-import { DayScheduleWhereUniqueInput } from "../daySchedule/DayScheduleWhereUniqueInput";
+import { DayScheduleUpdateManyWithoutUsersInput } from "./DayScheduleUpdateManyWithoutUsersInput";
 import { InputJsonValue } from "../../types";
 
 export type UserUpdateInput = {
-  daySchedules?: DayScheduleWhereUniqueInput | null;
+  daySchedules?: DayScheduleUpdateManyWithoutUsersInput;
   firstName?: string | null;
   lastName?: string | null;
   password?: string;

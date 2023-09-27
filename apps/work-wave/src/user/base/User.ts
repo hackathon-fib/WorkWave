@@ -30,12 +30,12 @@ class User {
 
   @ApiProperty({
     required: false,
-    type: () => DaySchedule,
+    type: () => [DaySchedule],
   })
   @ValidateNested()
   @Type(() => DaySchedule)
   @IsOptional()
-  daySchedules?: DaySchedule | null;
+  daySchedules?: Array<DaySchedule>;
 
   @ApiProperty({
     required: false,

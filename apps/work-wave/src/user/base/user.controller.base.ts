@@ -27,6 +27,9 @@ import { UserWhereUniqueInput } from "./UserWhereUniqueInput";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserUpdateInput } from "./UserUpdateInput";
 import { User } from "./User";
+import { DayScheduleFindManyArgs } from "../../daySchedule/base/DayScheduleFindManyArgs";
+import { DaySchedule } from "../../daySchedule/base/DaySchedule";
+import { DayScheduleWhereUniqueInput } from "../../daySchedule/base/DayScheduleWhereUniqueInput";
 
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
@@ -48,24 +51,9 @@ export class UserControllerBase {
   })
   async create(@common.Body() data: UserCreateInput): Promise<User> {
     return await this.service.create({
-      data: {
-        ...data,
-
-        daySchedules: data.daySchedules
-          ? {
-              connect: data.daySchedules,
-            }
-          : undefined,
-      },
+      data: data,
       select: {
         createdAt: true,
-
-        daySchedules: {
-          select: {
-            id: true,
-          },
-        },
-
         firstName: true,
         id: true,
         lastName: true,
@@ -94,13 +82,6 @@ export class UserControllerBase {
       ...args,
       select: {
         createdAt: true,
-
-        daySchedules: {
-          select: {
-            id: true,
-          },
-        },
-
         firstName: true,
         id: true,
         lastName: true,
@@ -130,13 +111,6 @@ export class UserControllerBase {
       where: params,
       select: {
         createdAt: true,
-
-        daySchedules: {
-          select: {
-            id: true,
-          },
-        },
-
         firstName: true,
         id: true,
         lastName: true,
@@ -172,24 +146,9 @@ export class UserControllerBase {
     try {
       return await this.service.update({
         where: params,
-        data: {
-          ...data,
-
-          daySchedules: data.daySchedules
-            ? {
-                connect: data.daySchedules,
-              }
-            : undefined,
-        },
+        data: data,
         select: {
           createdAt: true,
-
-          daySchedules: {
-            select: {
-              id: true,
-            },
-          },
-
           firstName: true,
           id: true,
           lastName: true,
@@ -227,13 +186,6 @@ export class UserControllerBase {
         where: params,
         select: {
           createdAt: true,
-
-          daySchedules: {
-            select: {
-              id: true,
-            },
-          },
-
           firstName: true,
           id: true,
           lastName: true,
@@ -250,5 +202,116 @@ export class UserControllerBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @common.Get("/:id/daySchedules")
+  @ApiNestedQuery(DayScheduleFindManyArgs)
+  @nestAccessControl.UseRoles({
+    resource: "DaySchedule",
+    action: "read",
+    possession: "any",
+  })
+  async findManyDaySchedules(
+    @common.Req() request: Request,
+    @common.Param() params: UserWhereUniqueInput
+  ): Promise<DaySchedule[]> {
+    const query = plainToClass(DayScheduleFindManyArgs, request.query);
+    const results = await this.service.findDaySchedules(params.id, {
+      ...query,
+      select: {
+        createdAt: true,
+        date: true,
+        id: true,
+        intervals: true,
+        note: true,
+
+        status: {
+          select: {
+            id: true,
+          },
+        },
+
+        updatedAt: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @common.Post("/:id/daySchedules")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async connectDaySchedules(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: DayScheduleWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      daySchedules: {
+        connect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Patch("/:id/daySchedules")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async updateDaySchedules(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: DayScheduleWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      daySchedules: {
+        set: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Delete("/:id/daySchedules")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async disconnectDaySchedules(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: DayScheduleWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      daySchedules: {
+        disconnect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
   }
 }
