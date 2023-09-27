@@ -93,7 +93,7 @@ class DaySchedule {
   @ValidateNested()
   @Type(() => User)
   @IsOptional()
-  userId?: User | null;
+  user?: User | null;
 }
 
 export { DaySchedule as DaySchedule };

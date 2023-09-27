@@ -103,9 +103,9 @@ export class DayScheduleResolverBase {
             }
           : undefined,
 
-        userId: args.data.userId
+        user: args.data.user
           ? {
-              connect: args.data.userId,
+              connect: args.data.user,
             }
           : undefined,
       },
@@ -134,9 +134,9 @@ export class DayScheduleResolverBase {
               }
             : undefined,
 
-          userId: args.data.userId
+          user: args.data.user
             ? {
-                connect: args.data.userId,
+                connect: args.data.user,
               }
             : undefined,
         },
@@ -196,17 +196,17 @@ export class DayScheduleResolverBase {
   @common.UseInterceptors(AclFilterResponseInterceptor)
   @graphql.ResolveField(() => User, {
     nullable: true,
-    name: "userId",
+    name: "user",
   })
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "read",
     possession: "any",
   })
-  async resolveFieldUserId(
+  async resolveFieldUser(
     @graphql.Parent() parent: DaySchedule
   ): Promise<User | null> {
-    const result = await this.service.getUserId(parent.id);
+    const result = await this.service.getUser(parent.id);
 
     if (!result) {
       return null;

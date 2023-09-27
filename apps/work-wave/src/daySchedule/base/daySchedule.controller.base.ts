@@ -59,9 +59,9 @@ export class DayScheduleControllerBase {
             }
           : undefined,
 
-        userId: data.userId
+        user: data.user
           ? {
-              connect: data.userId,
+              connect: data.user,
             }
           : undefined,
       },
@@ -80,7 +80,7 @@ export class DayScheduleControllerBase {
 
         updatedAt: true,
 
-        userId: {
+        user: {
           select: {
             id: true,
           },
@@ -120,7 +120,7 @@ export class DayScheduleControllerBase {
 
         updatedAt: true,
 
-        userId: {
+        user: {
           select: {
             id: true,
           },
@@ -161,7 +161,7 @@ export class DayScheduleControllerBase {
 
         updatedAt: true,
 
-        userId: {
+        user: {
           select: {
             id: true,
           },
@@ -204,9 +204,9 @@ export class DayScheduleControllerBase {
               }
             : undefined,
 
-          userId: data.userId
+          user: data.user
             ? {
-                connect: data.userId,
+                connect: data.user,
               }
             : undefined,
         },
@@ -225,7 +225,7 @@ export class DayScheduleControllerBase {
 
           updatedAt: true,
 
-          userId: {
+          user: {
             select: {
               id: true,
             },
@@ -274,7 +274,7 @@ export class DayScheduleControllerBase {
 
           updatedAt: true,
 
-          userId: {
+          user: {
             select: {
               id: true,
             },

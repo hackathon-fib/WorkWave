@@ -75,7 +75,7 @@ class DayScheduleUpdateInput {
   @Field(() => UserWhereUniqueInput, {
     nullable: true,
   })
-  userId?: UserWhereUniqueInput | null;
+  user?: UserWhereUniqueInput | null;
 }
 
 export { DayScheduleUpdateInput as DayScheduleUpdateInput };
