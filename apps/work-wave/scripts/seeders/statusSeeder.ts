@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
-async function statusSeeder() {
+export async function seed(prisma: any) {
 
   const statuses = [
     {
@@ -28,10 +28,5 @@ async function statusSeeder() {
 
 }
 
-statusSeeder()
-    .catch((error) => {
-      console.error('Error seeding statuses:', error);
-    })
-    .finally(async () => {
-      await prisma.$disconnect();
-    });
+
+module.exports = { seed };

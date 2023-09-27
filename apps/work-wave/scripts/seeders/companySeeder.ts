@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { faker } from '@faker-js/faker';
 const prisma = new PrismaClient();
 
-async function companySeeder() {
+export async function seed(prisma: any) {
 
   const companies = {
       name: "Feed It Back",
@@ -12,10 +12,4 @@ async function companySeeder() {
 
 }
 
-companySeeder()
-    .catch((error) => {
-      console.error('Error seeding companies:', error);
-    })
-    .finally(async () => {
-      await prisma.$disconnect();
-    });
+module.exports = { seed };

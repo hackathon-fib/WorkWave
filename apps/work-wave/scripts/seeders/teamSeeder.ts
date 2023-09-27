@@ -1,7 +1,6 @@
 const {PrismaClient} = require('@prisma/client');
-const prisma = new PrismaClient();
 
-async function teamSeeder() {
+export async function seed(prisma: any) {
     const companies = await prisma.company.findMany(); // Fetch all companies from the database
     const numCompanies = companies.length;
 
@@ -12,8 +11,7 @@ async function teamSeeder() {
 
     const teamsToCreate = [
         {
-            name: "WorkWave",
-            company: "Feed It Back"
+            name: "WorkWave"
         }
     ];
 
@@ -33,10 +31,5 @@ async function teamSeeder() {
     console.log('Teams seeded successfully.');
 }
 
-teamSeeder()
-    .catch((error) => {
-        console.error('Error seeding teams:', error);
-    })
-    .finally(async () => {
-        await prisma.$disconnect();
-    });
+
+module.exports = { seed };
