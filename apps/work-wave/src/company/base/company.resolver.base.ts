@@ -28,6 +28,8 @@ import { CompanyFindUniqueArgs } from "./CompanyFindUniqueArgs";
 import { Company } from "./Company";
 import { TeamFindManyArgs } from "../../team/base/TeamFindManyArgs";
 import { Team } from "../../team/base/Team";
+import { UserFindManyArgs } from "../../user/base/UserFindManyArgs";
+import { User } from "../../user/base/User";
 import { CompanyService } from "../company.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => Company)
@@ -156,6 +158,26 @@ export class CompanyResolverBase {
     @graphql.Args() args: TeamFindManyArgs
   ): Promise<Team[]> {
     const results = await this.service.findTeams(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [User], { name: "users" })
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "read",
+    possession: "any",
+  })
+  async resolveFieldUsers(
+    @graphql.Parent() parent: Company,
+    @graphql.Args() args: UserFindManyArgs
+  ): Promise<User[]> {
+    const results = await this.service.findUsers(parent.id, args);
 
     if (!results) {
       return [];
