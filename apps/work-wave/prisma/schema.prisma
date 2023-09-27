@@ -1,0 +1,60 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  createdAt    DateTime     @default(now())
+  daySchedules DaySchedule?
+  firstName    String?
+  id           String       @id @default(cuid())
+  lastName     String?
+  password     String
+  roles        Json
+  updatedAt    DateTime     @updatedAt
+  username     String       @unique
+}
+
+model Company {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  Name      String
+  phone     String?
+  teams     Team[]
+  updatedAt DateTime @updatedAt
+}
+
+model Team {
+  companyId  Company? @relation(fields: [Id], references: [id])
+  Id         String?
+  createdAt  DateTime @default(now())
+  id         String   @id @default(cuid())
+  name       String?
+  parentTeam String?
+  updatedAt  DateTime @updatedAt
+}
+
+model DaySchedule {
+  createdAt DateTime  @default(now())
+  date      DateTime?
+  id        String    @id @default(cuid())
+  intervals Json?
+  note      String?
+  status    Status?   @relation(fields: [ID], references: [id])
+  ID        String?   @unique
+  updatedAt DateTime  @updatedAt
+  userId    User?     @relation(fields: [ID], references: [id])
+  ID        String?   @unique
+}
+
+model Status {
+  createdAt    DateTime     @default(now())
+  daySchedules DaySchedule?
+  id           String       @id @default(cuid())
+  name         String?
+  updatedAt    DateTime     @updatedAt
+}
