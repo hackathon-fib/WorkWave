@@ -11,5 +11,5 @@ export type DayScheduleWhereInput = {
   intervals?: JsonFilter;
   note?: StringNullableFilter;
   status?: StatusWhereUniqueInput;
-  userId?: UserWhereUniqueInput;
+  user?: UserWhereUniqueInput;
 };

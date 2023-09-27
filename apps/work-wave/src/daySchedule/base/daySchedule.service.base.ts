@@ -55,11 +55,11 @@ export class DayScheduleServiceBase {
       .status();
   }
 
-  async getUserId(parentId: string): Promise<User | null> {
+  async getUser(parentId: string): Promise<User | null> {
     return this.prisma.daySchedule
       .findUnique({
         where: { id: parentId },
       })
-      .userId();
+      .user();
   }
 }

@@ -23,7 +23,7 @@ export const DayScheduleCreate = (props: CreateProps): React.ReactElement => {
         <ReferenceInput source="status.id" reference="Status" label="Status">
           <SelectInput optionText={StatusTitle} />
         </ReferenceInput>
-        <ReferenceInput source="userId.id" reference="User" label="UserId">
+        <ReferenceInput source="user.id" reference="User" label="UserId">
           <SelectInput optionText={UserTitle} />
         </ReferenceInput>
       </SimpleForm>

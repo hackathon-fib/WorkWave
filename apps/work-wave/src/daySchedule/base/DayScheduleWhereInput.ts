@@ -88,7 +88,7 @@ class DayScheduleWhereInput {
   @Field(() => UserWhereUniqueInput, {
     nullable: true,
   })
-  userId?: UserWhereUniqueInput;
+  user?: UserWhereUniqueInput;
 }
 
 export { DayScheduleWhereInput as DayScheduleWhereInput };

@@ -10,5 +10,5 @@ export type DaySchedule = {
   note: string | null;
   status?: Status | null;
   updatedAt: Date;
-  userId?: User | null;
+  user?: User | null;
 };

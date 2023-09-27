@@ -7,5 +7,5 @@ export type DayScheduleCreateInput = {
   intervals?: InputJsonValue;
   note?: string | null;
   status?: StatusWhereUniqueInput | null;
-  userId?: UserWhereUniqueInput | null;
+  user?: UserWhereUniqueInput | null;
 };
