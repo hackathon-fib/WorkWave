@@ -20,17 +20,12 @@ export const TeamList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <ReferenceField
-          label="CompanyId"
-          source="company.id"
-          reference="Company"
-        >
+        <ReferenceField label="Company" source="company.id" reference="Company">
           <TextField source={COMPANY_TITLE_FIELD} />
         </ReferenceField>
         <DateField source="createdAt" label="Created At" />
         <TextField label="ID" source="id" />
         <TextField label="Name" source="name" />
-        <TextField label="ParentTeam" source="parentTeam" />
         <DateField source="updatedAt" label="Updated At" />
       </Datagrid>
     </List>

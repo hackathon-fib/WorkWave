@@ -83,7 +83,7 @@ class DayScheduleOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  StatusId?: SortOrder;
+  statusId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -105,7 +105,7 @@ class DayScheduleOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  UserID?: SortOrder;
+  userID?: SortOrder;
 }
 
 export { DayScheduleOrderByInput as DayScheduleOrderByInput };

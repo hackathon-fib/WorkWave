@@ -13,15 +13,10 @@ export const TeamEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <ReferenceInput
-          source="companyId.id"
-          reference="Company"
-          label="CompanyId"
-        >
+        <ReferenceInput source="company.id" reference="Company" label="Company">
           <SelectInput optionText={CompanyTitle} />
         </ReferenceInput>
         <TextInput label="Name" source="name" />
-        <TextInput label="ParentTeam" source="parentTeam" />
       </SimpleForm>
     </Edit>
   );

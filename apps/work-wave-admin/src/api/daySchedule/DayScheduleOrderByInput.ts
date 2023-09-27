@@ -6,7 +6,7 @@ export type DayScheduleOrderByInput = {
   id?: SortOrder;
   intervals?: SortOrder;
   note?: SortOrder;
-  StatusId?: SortOrder;
+  statusId?: SortOrder;
   updatedAt?: SortOrder;
-  UserID?: SortOrder;
+  userID?: SortOrder;
 };

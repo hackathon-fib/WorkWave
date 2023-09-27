@@ -15,7 +15,7 @@ export const CompanyEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <TextInput label="name" source="Name" />
+        <TextInput label="Name" source="name" />
         <TextInput label="Phone" source="phone" />
         <ReferenceArrayInput
           source="teams"

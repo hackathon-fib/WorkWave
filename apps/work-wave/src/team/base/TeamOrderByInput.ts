@@ -28,7 +28,7 @@ class TeamOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  Id?: SortOrder;
+  companyId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -62,17 +62,6 @@ class TeamOrderByInput {
     nullable: true,
   })
   name?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  parentTeam?: SortOrder;
 
   @ApiProperty({
     required: false,

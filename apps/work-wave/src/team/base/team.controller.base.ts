@@ -51,14 +51,14 @@ export class TeamControllerBase {
       data: {
         ...data,
 
-        companyId: data.companyId
+        company: data.company
           ? {
-              connect: data.companyId,
+              connect: data.company,
             }
           : undefined,
       },
       select: {
-        companyId: {
+        company: {
           select: {
             id: true,
           },
@@ -67,7 +67,6 @@ export class TeamControllerBase {
         createdAt: true,
         id: true,
         name: true,
-        parentTeam: true,
         updatedAt: true,
       },
     });
@@ -90,7 +89,7 @@ export class TeamControllerBase {
     return this.service.findMany({
       ...args,
       select: {
-        companyId: {
+        company: {
           select: {
             id: true,
           },
@@ -99,7 +98,6 @@ export class TeamControllerBase {
         createdAt: true,
         id: true,
         name: true,
-        parentTeam: true,
         updatedAt: true,
       },
     });
@@ -123,7 +121,7 @@ export class TeamControllerBase {
     const result = await this.service.findOne({
       where: params,
       select: {
-        companyId: {
+        company: {
           select: {
             id: true,
           },
@@ -132,7 +130,6 @@ export class TeamControllerBase {
         createdAt: true,
         id: true,
         name: true,
-        parentTeam: true,
         updatedAt: true,
       },
     });
@@ -166,14 +163,14 @@ export class TeamControllerBase {
         data: {
           ...data,
 
-          companyId: data.companyId
+          company: data.company
             ? {
-                connect: data.companyId,
+                connect: data.company,
               }
             : undefined,
         },
         select: {
-          companyId: {
+          company: {
             select: {
               id: true,
             },
@@ -182,7 +179,6 @@ export class TeamControllerBase {
           createdAt: true,
           id: true,
           name: true,
-          parentTeam: true,
           updatedAt: true,
         },
       });
@@ -214,7 +210,7 @@ export class TeamControllerBase {
       return await this.service.delete({
         where: params,
         select: {
-          companyId: {
+          company: {
             select: {
               id: true,
             },
@@ -223,7 +219,6 @@ export class TeamControllerBase {
           createdAt: true,
           id: true,
           name: true,
-          parentTeam: true,
           updatedAt: true,
         },
       });

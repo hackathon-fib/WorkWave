@@ -29,7 +29,7 @@ class TeamWhereInput {
   @Field(() => CompanyWhereUniqueInput, {
     nullable: true,
   })
-  companyId?: CompanyWhereUniqueInput;
+  company?: CompanyWhereUniqueInput;
 
   @ApiProperty({
     required: false,
@@ -52,17 +52,6 @@ class TeamWhereInput {
     nullable: true,
   })
   name?: StringNullableFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringNullableFilter,
-  })
-  @Type(() => StringNullableFilter)
-  @IsOptional()
-  @Field(() => StringNullableFilter, {
-    nullable: true,
-  })
-  parentTeam?: StringNullableFilter;
 }
 
 export { TeamWhereInput as TeamWhereInput };

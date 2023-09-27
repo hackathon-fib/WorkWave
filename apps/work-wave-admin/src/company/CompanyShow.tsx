@@ -19,13 +19,13 @@ export const CompanyShow = (props: ShowProps): React.ReactElement => {
       <SimpleShowLayout>
         <DateField source="createdAt" label="Created At" />
         <TextField label="ID" source="id" />
-        <TextField label="name" source="Name" />
+        <TextField label="Name" source="name" />
         <TextField label="Phone" source="phone" />
         <DateField source="updatedAt" label="Updated At" />
-        <ReferenceManyField reference="Team" target="Id" label="Teams">
+        <ReferenceManyField reference="Team" target="companyId" label="Teams">
           <Datagrid rowClick="show">
             <ReferenceField
-              label="CompanyId"
+              label="Company"
               source="company.id"
               reference="Company"
             >
@@ -34,7 +34,6 @@ export const CompanyShow = (props: ShowProps): React.ReactElement => {
             <DateField source="createdAt" label="Created At" />
             <TextField label="ID" source="id" />
             <TextField label="Name" source="name" />
-            <TextField label="ParentTeam" source="parentTeam" />
             <DateField source="updatedAt" label="Updated At" />
           </Datagrid>
         </ReferenceManyField>

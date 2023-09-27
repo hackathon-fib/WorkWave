@@ -1,7 +1,6 @@
 import { CompanyWhereUniqueInput } from "../company/CompanyWhereUniqueInput";
 
 export type TeamCreateInput = {
-  companyId?: CompanyWhereUniqueInput | null;
+  company?: CompanyWhereUniqueInput | null;
   name?: string | null;
-  parentTeam?: string | null;
 };

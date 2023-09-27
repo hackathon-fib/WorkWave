@@ -55,7 +55,7 @@ export class CompanyControllerBase {
       select: {
         createdAt: true,
         id: true,
-        Name: true,
+        name: true,
         phone: true,
         updatedAt: true,
       },
@@ -81,7 +81,7 @@ export class CompanyControllerBase {
       select: {
         createdAt: true,
         id: true,
-        Name: true,
+        name: true,
         phone: true,
         updatedAt: true,
       },
@@ -108,7 +108,7 @@ export class CompanyControllerBase {
       select: {
         createdAt: true,
         id: true,
-        Name: true,
+        name: true,
         phone: true,
         updatedAt: true,
       },
@@ -144,7 +144,7 @@ export class CompanyControllerBase {
         select: {
           createdAt: true,
           id: true,
-          Name: true,
+          name: true,
           phone: true,
           updatedAt: true,
         },
@@ -179,7 +179,7 @@ export class CompanyControllerBase {
         select: {
           createdAt: true,
           id: true,
-          Name: true,
+          name: true,
           phone: true,
           updatedAt: true,
         },
@@ -210,7 +210,7 @@ export class CompanyControllerBase {
     const results = await this.service.findTeams(params.id, {
       ...query,
       select: {
-        companyId: {
+        company: {
           select: {
             id: true,
           },
@@ -219,7 +219,6 @@ export class CompanyControllerBase {
         createdAt: true,
         id: true,
         name: true,
-        parentTeam: true,
         updatedAt: true,
       },
     });

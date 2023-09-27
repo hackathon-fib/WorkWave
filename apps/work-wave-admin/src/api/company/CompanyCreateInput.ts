@@ -1,7 +1,7 @@
 import { TeamCreateNestedManyWithoutCompaniesInput } from "./TeamCreateNestedManyWithoutCompaniesInput";
 
 export type CompanyCreateInput = {
-  Name: string;
+  name: string;
   phone?: string | null;
   teams?: TeamCreateNestedManyWithoutCompaniesInput;
 };

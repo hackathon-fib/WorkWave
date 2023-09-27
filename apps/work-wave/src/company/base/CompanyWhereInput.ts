@@ -39,7 +39,7 @@ class CompanyWhereInput {
   @Field(() => StringFilter, {
     nullable: true,
   })
-  Name?: StringFilter;
+  name?: StringFilter;
 
   @ApiProperty({
     required: false,

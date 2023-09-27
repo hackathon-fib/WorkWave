@@ -27,7 +27,7 @@ class TeamCreateInput {
   @Field(() => CompanyWhereUniqueInput, {
     nullable: true,
   })
-  companyId?: CompanyWhereUniqueInput | null;
+  company?: CompanyWhereUniqueInput | null;
 
   @ApiProperty({
     required: false,
@@ -39,17 +39,6 @@ class TeamCreateInput {
     nullable: true,
   })
   name?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  parentTeam?: string | null;
 }
 
 export { TeamCreateInput as TeamCreateInput };
