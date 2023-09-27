@@ -21,7 +21,6 @@ export const DayScheduleCreate = (props: CreateProps): React.ReactElement => {
     <Create {...props}>
       <SimpleForm>
         <DateTimeInput label="Date" source="date" />
-        <div />
         <TextInput label="Note" source="note" />
         <ReferenceArrayInput
           source="scheduleIntervals"
