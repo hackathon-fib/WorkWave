@@ -90,9 +90,9 @@ export class TeamResolverBase {
       data: {
         ...args.data,
 
-        companyId: args.data.companyId
+        company: args.data.company
           ? {
-              connect: args.data.companyId,
+              connect: args.data.company,
             }
           : undefined,
       },
@@ -113,9 +113,9 @@ export class TeamResolverBase {
         data: {
           ...args.data,
 
-          companyId: args.data.companyId
+          company: args.data.company
             ? {
-                connect: args.data.companyId,
+                connect: args.data.company,
               }
             : undefined,
         },
@@ -152,17 +152,17 @@ export class TeamResolverBase {
   @common.UseInterceptors(AclFilterResponseInterceptor)
   @graphql.ResolveField(() => Company, {
     nullable: true,
-    name: "companyId",
+    name: "company",
   })
   @nestAccessControl.UseRoles({
     resource: "Company",
     action: "read",
     possession: "any",
   })
-  async resolveFieldCompanyId(
+  async resolveFieldCompany(
     @graphql.Parent() parent: Team
   ): Promise<Company | null> {
-    const result = await this.service.getCompanyId(parent.id);
+    const result = await this.service.getCompany(parent.id);
 
     if (!result) {
       return null;

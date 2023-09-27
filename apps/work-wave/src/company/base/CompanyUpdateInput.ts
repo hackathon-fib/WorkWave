@@ -26,7 +26,7 @@ class CompanyUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  Name?: string;
+  name?: string;
 
   @ApiProperty({
     required: false,

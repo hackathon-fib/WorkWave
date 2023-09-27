@@ -13,15 +13,10 @@ export const TeamCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
-        <ReferenceInput
-          source="companyId.id"
-          reference="Company"
-          label="CompanyId"
-        >
+        <ReferenceInput source="company.id" reference="Company" label="Company">
           <SelectInput optionText={CompanyTitle} />
         </ReferenceInput>
         <TextInput label="Name" source="name" />
-        <TextInput label="ParentTeam" source="parentTeam" />
       </SimpleForm>
     </Create>
   );

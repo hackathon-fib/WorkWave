@@ -4,7 +4,7 @@ import { TeamListRelationFilter } from "../team/TeamListRelationFilter";
 
 export type CompanyWhereInput = {
   id?: StringFilter;
-  Name?: StringFilter;
+  name?: StringFilter;
   phone?: StringNullableFilter;
   teams?: TeamListRelationFilter;
 };

@@ -47,11 +47,11 @@ export class TeamServiceBase {
     return this.prisma.team.delete(args);
   }
 
-  async getCompanyId(parentId: string): Promise<Company | null> {
+  async getCompany(parentId: string): Promise<Company | null> {
     return this.prisma.team
       .findUnique({
         where: { id: parentId },
       })
-      .companyId();
+      .company();
   }
 }

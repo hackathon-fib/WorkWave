@@ -3,8 +3,7 @@ import { StringFilter } from "../../util/StringFilter";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 
 export type TeamWhereInput = {
-  companyId?: CompanyWhereUniqueInput;
+  company?: CompanyWhereUniqueInput;
   id?: StringFilter;
   name?: StringNullableFilter;
-  parentTeam?: StringNullableFilter;
 };

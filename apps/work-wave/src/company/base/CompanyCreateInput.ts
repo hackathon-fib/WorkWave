@@ -23,7 +23,7 @@ class CompanyCreateInput {
   })
   @IsString()
   @Field(() => String)
-  Name!: string;
+  name!: string;
 
   @ApiProperty({
     required: false,

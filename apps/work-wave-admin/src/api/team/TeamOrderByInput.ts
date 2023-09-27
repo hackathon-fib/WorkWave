@@ -1,10 +1,9 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type TeamOrderByInput = {
-  Id?: SortOrder;
+  companyId?: SortOrder;
   createdAt?: SortOrder;
   id?: SortOrder;
   name?: SortOrder;
-  parentTeam?: SortOrder;
   updatedAt?: SortOrder;
 };

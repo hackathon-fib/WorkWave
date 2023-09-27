@@ -39,7 +39,7 @@ class Company {
   })
   @IsString()
   @Field(() => String)
-  Name!: string;
+  name!: string;
 
   @ApiProperty({
     required: false,

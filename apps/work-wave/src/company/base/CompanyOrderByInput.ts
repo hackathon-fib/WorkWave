@@ -50,7 +50,7 @@ class CompanyOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  Name?: SortOrder;
+  name?: SortOrder;
 
   @ApiProperty({
     required: false,

@@ -1,10 +1,9 @@
 import { Company } from "../company/Company";
 
 export type Team = {
-  companyId?: Company | null;
+  company?: Company | null;
   createdAt: Date;
   id: string;
   name: string | null;
-  parentTeam: string | null;
   updatedAt: Date;
 };
