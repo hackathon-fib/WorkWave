@@ -2,7 +2,7 @@ import { DaySchedule } from "../daySchedule/DaySchedule";
 
 export type Status = {
   createdAt: Date;
-  daySchedules?: DaySchedule | null;
+  daySchedules?: Array<DaySchedule>;
   id: string;
   name: string | null;
   updatedAt: Date;

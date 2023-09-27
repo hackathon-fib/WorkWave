@@ -47,11 +47,14 @@ export class StatusServiceBase {
     return this.prisma.status.delete(args);
   }
 
-  async getDaySchedules(parentId: string): Promise<DaySchedule | null> {
+  async findDaySchedules(
+    parentId: string,
+    args: Prisma.DayScheduleFindManyArgs
+  ): Promise<DaySchedule[]> {
     return this.prisma.status
-      .findUnique({
+      .findUniqueOrThrow({
         where: { id: parentId },
       })
-      .daySchedules();
+      .daySchedules(args);
   }
 }

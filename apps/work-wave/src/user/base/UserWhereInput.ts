@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { DayScheduleWhereUniqueInput } from "../../daySchedule/base/DayScheduleWhereUniqueInput";
+import { DayScheduleListRelationFilter } from "../../daySchedule/base/DayScheduleListRelationFilter";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
@@ -21,15 +21,15 @@ import { StringFilter } from "../../util/StringFilter";
 class UserWhereInput {
   @ApiProperty({
     required: false,
-    type: () => DayScheduleWhereUniqueInput,
+    type: () => DayScheduleListRelationFilter,
   })
   @ValidateNested()
-  @Type(() => DayScheduleWhereUniqueInput)
+  @Type(() => DayScheduleListRelationFilter)
   @IsOptional()
-  @Field(() => DayScheduleWhereUniqueInput, {
+  @Field(() => DayScheduleListRelationFilter, {
     nullable: true,
   })
-  daySchedules?: DayScheduleWhereUniqueInput;
+  daySchedules?: DayScheduleListRelationFilter;
 
   @ApiProperty({
     required: false,

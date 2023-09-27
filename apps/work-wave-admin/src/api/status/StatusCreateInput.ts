@@ -1,6 +1,6 @@
-import { DayScheduleWhereUniqueInput } from "../daySchedule/DayScheduleWhereUniqueInput";
+import { DayScheduleCreateNestedManyWithoutStatusesInput } from "./DayScheduleCreateNestedManyWithoutStatusesInput";
 
 export type StatusCreateInput = {
-  daySchedules?: DayScheduleWhereUniqueInput | null;
+  daySchedules?: DayScheduleCreateNestedManyWithoutStatusesInput;
   name?: string | null;
 };

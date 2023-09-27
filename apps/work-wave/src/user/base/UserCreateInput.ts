@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { DayScheduleWhereUniqueInput } from "../../daySchedule/base/DayScheduleWhereUniqueInput";
+import { DayScheduleCreateNestedManyWithoutUsersInput } from "./DayScheduleCreateNestedManyWithoutUsersInput";
 import { ValidateNested, IsOptional, IsString } from "class-validator";
 import { Type } from "class-transformer";
 import { IsJSONValue } from "@app/custom-validators";
@@ -22,15 +22,15 @@ import { InputJsonValue } from "../../types";
 class UserCreateInput {
   @ApiProperty({
     required: false,
-    type: () => DayScheduleWhereUniqueInput,
+    type: () => DayScheduleCreateNestedManyWithoutUsersInput,
   })
   @ValidateNested()
-  @Type(() => DayScheduleWhereUniqueInput)
+  @Type(() => DayScheduleCreateNestedManyWithoutUsersInput)
   @IsOptional()
-  @Field(() => DayScheduleWhereUniqueInput, {
+  @Field(() => DayScheduleCreateNestedManyWithoutUsersInput, {
     nullable: true,
   })
-  daySchedules?: DayScheduleWhereUniqueInput | null;
+  daySchedules?: DayScheduleCreateNestedManyWithoutUsersInput;
 
   @ApiProperty({
     required: false,

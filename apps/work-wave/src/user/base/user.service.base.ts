@@ -72,11 +72,14 @@ export class UserServiceBase {
     return this.prisma.user.delete(args);
   }
 
-  async getDaySchedules(parentId: string): Promise<DaySchedule | null> {
+  async findDaySchedules(
+    parentId: string,
+    args: Prisma.DayScheduleFindManyArgs
+  ): Promise<DaySchedule[]> {
     return this.prisma.user
-      .findUnique({
+      .findUniqueOrThrow({
         where: { id: parentId },
       })
-      .daySchedules();
+      .daySchedules(args);
   }
 }

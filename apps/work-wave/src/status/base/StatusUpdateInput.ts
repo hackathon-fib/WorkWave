@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { DayScheduleWhereUniqueInput } from "../../daySchedule/base/DayScheduleWhereUniqueInput";
+import { DayScheduleUpdateManyWithoutStatusesInput } from "./DayScheduleUpdateManyWithoutStatusesInput";
 import { ValidateNested, IsOptional, IsString } from "class-validator";
 import { Type } from "class-transformer";
 
@@ -19,15 +19,15 @@ import { Type } from "class-transformer";
 class StatusUpdateInput {
   @ApiProperty({
     required: false,
-    type: () => DayScheduleWhereUniqueInput,
+    type: () => DayScheduleUpdateManyWithoutStatusesInput,
   })
   @ValidateNested()
-  @Type(() => DayScheduleWhereUniqueInput)
+  @Type(() => DayScheduleUpdateManyWithoutStatusesInput)
   @IsOptional()
-  @Field(() => DayScheduleWhereUniqueInput, {
+  @Field(() => DayScheduleUpdateManyWithoutStatusesInput, {
     nullable: true,
   })
-  daySchedules?: DayScheduleWhereUniqueInput | null;
+  daySchedules?: DayScheduleUpdateManyWithoutStatusesInput;
 
   @ApiProperty({
     required: false,

@@ -26,6 +26,7 @@ import { UserCountArgs } from "./UserCountArgs";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserFindUniqueArgs } from "./UserFindUniqueArgs";
 import { User } from "./User";
+import { DayScheduleFindManyArgs } from "../../daySchedule/base/DayScheduleFindManyArgs";
 import { DaySchedule } from "../../daySchedule/base/DaySchedule";
 import { UserService } from "../user.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
@@ -87,15 +88,7 @@ export class UserResolverBase {
   async createUser(@graphql.Args() args: CreateUserArgs): Promise<User> {
     return await this.service.create({
       ...args,
-      data: {
-        ...args.data,
-
-        daySchedules: args.data.daySchedules
-          ? {
-              connect: args.data.daySchedules,
-            }
-          : undefined,
-      },
+      data: args.data,
     });
   }
 
@@ -110,15 +103,7 @@ export class UserResolverBase {
     try {
       return await this.service.update({
         ...args,
-        data: {
-          ...args.data,
-
-          daySchedules: args.data.daySchedules
-            ? {
-                connect: args.data.daySchedules,
-              }
-            : undefined,
-        },
+        data: args.data,
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -150,23 +135,22 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => DaySchedule, {
-    nullable: true,
-    name: "daySchedules",
-  })
+  @graphql.ResolveField(() => [DaySchedule], { name: "daySchedules" })
   @nestAccessControl.UseRoles({
     resource: "DaySchedule",
     action: "read",
     possession: "any",
   })
   async resolveFieldDaySchedules(
-    @graphql.Parent() parent: User
-  ): Promise<DaySchedule | null> {
-    const result = await this.service.getDaySchedules(parent.id);
+    @graphql.Parent() parent: User,
+    @graphql.Args() args: DayScheduleFindManyArgs
+  ): Promise<DaySchedule[]> {
+    const results = await this.service.findDaySchedules(parent.id, args);
 
-    if (!result) {
-      return null;
+    if (!results) {
+      return [];
     }
-    return result;
+
+    return results;
   }
 }
