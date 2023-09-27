@@ -44,11 +44,11 @@ model DaySchedule {
   id        String    @id @default(cuid())
   intervals Json?
   note      String?
-  status    Status?   @relation(fields: [statusId], references: [id])
+  status    Status?   @relation(fields: [StatusId], references: [id])
+  StatusId  String?   @unique
   updatedAt DateTime  @updatedAt
   userId    User?     @relation(fields: [UserID], references: [id])
   UserID    String?   @unique
-  statusId  String?
 }
 
 model Status {
