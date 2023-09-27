@@ -23,7 +23,7 @@ export const ScheduleIntervalList = (props: ListProps): React.ReactElement => {
         <TextField label="category" source="category" />
         <DateField source="createdAt" label="Created At" />
         <ReferenceField
-          label="DaySchedule"
+          label="DaySchedules"
           source="dayschedule.id"
           reference="DaySchedule"
         >

@@ -15,7 +15,6 @@ import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
 import { StringFilter } from "../../util/StringFilter";
-import { JsonFilter } from "../../util/JsonFilter";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { ScheduleIntervalListRelationFilter } from "../../scheduleInterval/base/ScheduleIntervalListRelationFilter";
 import { StatusWhereUniqueInput } from "../../status/base/StatusWhereUniqueInput";
@@ -44,17 +43,6 @@ class DayScheduleWhereInput {
     nullable: true,
   })
   id?: StringFilter;
-
-  @ApiProperty({
-    required: false,
-    type: JsonFilter,
-  })
-  @Type(() => JsonFilter)
-  @IsOptional()
-  @Field(() => JsonFilter, {
-    nullable: true,
-  })
-  intervals?: JsonFilter;
 
   @ApiProperty({
     required: false,

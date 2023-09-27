@@ -13,9 +13,6 @@ import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsDate, IsOptional, IsString, ValidateNested } from "class-validator";
 import { Type } from "class-transformer";
-import { IsJSONValue } from "@app/custom-validators";
-import { GraphQLJSON } from "graphql-type-json";
-import { JsonValue } from "type-fest";
 import { ScheduleInterval } from "../../scheduleInterval/base/ScheduleInterval";
 import { Status } from "../../status/base/Status";
 import { User } from "../../user/base/User";
@@ -48,16 +45,6 @@ class DaySchedule {
   @IsString()
   @Field(() => String)
   id!: string;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsJSONValue()
-  @IsOptional()
-  @Field(() => GraphQLJSON, {
-    nullable: true,
-  })
-  intervals!: JsonValue;
 
   @ApiProperty({
     required: false,

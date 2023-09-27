@@ -13,9 +13,6 @@ import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsDate, IsOptional, IsString, ValidateNested } from "class-validator";
 import { Type } from "class-transformer";
-import { IsJSONValue } from "@app/custom-validators";
-import { GraphQLJSON } from "graphql-type-json";
-import { InputJsonValue } from "../../types";
 import { ScheduleIntervalUpdateManyWithoutDaySchedulesInput } from "./ScheduleIntervalUpdateManyWithoutDaySchedulesInput";
 import { StatusWhereUniqueInput } from "../../status/base/StatusWhereUniqueInput";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
@@ -32,16 +29,6 @@ class DayScheduleUpdateInput {
     nullable: true,
   })
   date?: Date | null;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsJSONValue()
-  @IsOptional()
-  @Field(() => GraphQLJSON, {
-    nullable: true,
-  })
-  intervals?: InputJsonValue;
 
   @ApiProperty({
     required: false,

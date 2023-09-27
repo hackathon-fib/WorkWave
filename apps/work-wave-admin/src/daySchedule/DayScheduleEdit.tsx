@@ -21,7 +21,6 @@ export const DayScheduleEdit = (props: EditProps): React.ReactElement => {
     <Edit {...props}>
       <SimpleForm>
         <DateTimeInput label="Date" source="date" />
-        <div />
         <TextInput label="Note" source="note" />
         <ReferenceArrayInput
           source="scheduleIntervals"

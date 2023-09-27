@@ -72,7 +72,6 @@ export class DayScheduleControllerBase {
         createdAt: true,
         date: true,
         id: true,
-        intervals: true,
         note: true,
 
         status: {
@@ -112,7 +111,6 @@ export class DayScheduleControllerBase {
         createdAt: true,
         date: true,
         id: true,
-        intervals: true,
         note: true,
 
         status: {
@@ -153,7 +151,6 @@ export class DayScheduleControllerBase {
         createdAt: true,
         date: true,
         id: true,
-        intervals: true,
         note: true,
 
         status: {
@@ -217,7 +214,6 @@ export class DayScheduleControllerBase {
           createdAt: true,
           date: true,
           id: true,
-          intervals: true,
           note: true,
 
           status: {
@@ -266,7 +262,6 @@ export class DayScheduleControllerBase {
           createdAt: true,
           date: true,
           id: true,
-          intervals: true,
           note: true,
 
           status: {

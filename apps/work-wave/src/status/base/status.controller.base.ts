@@ -208,7 +208,6 @@ export class StatusControllerBase {
         createdAt: true,
         date: true,
         id: true,
-        intervals: true,
         note: true,
 
         status: {

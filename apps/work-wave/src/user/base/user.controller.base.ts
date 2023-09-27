@@ -272,7 +272,6 @@ export class UserControllerBase {
         createdAt: true,
         date: true,
         id: true,
-        intervals: true,
         note: true,
 
         status: {
