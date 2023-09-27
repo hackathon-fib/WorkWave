@@ -28,6 +28,8 @@ import { UserFindUniqueArgs } from "./UserFindUniqueArgs";
 import { User } from "./User";
 import { DayScheduleFindManyArgs } from "../../daySchedule/base/DayScheduleFindManyArgs";
 import { DaySchedule } from "../../daySchedule/base/DaySchedule";
+import { TeamFindManyArgs } from "../../team/base/TeamFindManyArgs";
+import { Team } from "../../team/base/Team";
 import { UserService } from "../user.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => User)
@@ -146,6 +148,26 @@ export class UserResolverBase {
     @graphql.Args() args: DayScheduleFindManyArgs
   ): Promise<DaySchedule[]> {
     const results = await this.service.findDaySchedules(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [Team], { name: "team" })
+  @nestAccessControl.UseRoles({
+    resource: "Team",
+    action: "read",
+    possession: "any",
+  })
+  async resolveFieldTeam(
+    @graphql.Parent() parent: User,
+    @graphql.Args() args: TeamFindManyArgs
+  ): Promise<Team[]> {
+    const results = await this.service.findTeam(parent.id, args);
 
     if (!results) {
       return [];

@@ -17,6 +17,7 @@ import { DaySchedule } from "../../daySchedule/base/DaySchedule";
 import { IsJSONValue } from "@app/custom-validators";
 import { GraphQLJSON } from "graphql-type-json";
 import { JsonValue } from "type-fest";
+import { Team } from "../../team/base/Team";
 
 @ObjectType()
 class User {
@@ -73,6 +74,15 @@ class User {
   @IsJSONValue()
   @Field(() => GraphQLJSON)
   roles!: JsonValue;
+
+  @ApiProperty({
+    required: false,
+    type: () => [Team],
+  })
+  @ValidateNested()
+  @Type(() => Team)
+  @IsOptional()
+  team?: Array<Team>;
 
   @ApiProperty({
     required: true,

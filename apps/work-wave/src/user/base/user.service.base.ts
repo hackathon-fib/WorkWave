@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, User, DaySchedule } from "@prisma/client";
+import { Prisma, User, DaySchedule, Team } from "@prisma/client";
 import { PasswordService } from "../../auth/password.service";
 import { transformStringFieldUpdateInput } from "../../prisma.util";
 
@@ -81,5 +81,16 @@ export class UserServiceBase {
         where: { id: parentId },
       })
       .daySchedules(args);
+  }
+
+  async findTeam(
+    parentId: string,
+    args: Prisma.TeamFindManyArgs
+  ): Promise<Team[]> {
+    return this.prisma.user
+      .findUniqueOrThrow({
+        where: { id: parentId },
+      })
+      .team(args);
   }
 }
