@@ -27,6 +27,9 @@ import { DayScheduleWhereUniqueInput } from "./DayScheduleWhereUniqueInput";
 import { DayScheduleFindManyArgs } from "./DayScheduleFindManyArgs";
 import { DayScheduleUpdateInput } from "./DayScheduleUpdateInput";
 import { DaySchedule } from "./DaySchedule";
+import { ScheduleIntervalFindManyArgs } from "../../scheduleInterval/base/ScheduleIntervalFindManyArgs";
+import { ScheduleInterval } from "../../scheduleInterval/base/ScheduleInterval";
+import { ScheduleIntervalWhereUniqueInput } from "../../scheduleInterval/base/ScheduleIntervalWhereUniqueInput";
 
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
@@ -289,5 +292,109 @@ export class DayScheduleControllerBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @common.Get("/:id/scheduleIntervals")
+  @ApiNestedQuery(ScheduleIntervalFindManyArgs)
+  @nestAccessControl.UseRoles({
+    resource: "ScheduleInterval",
+    action: "read",
+    possession: "any",
+  })
+  async findManyScheduleIntervals(
+    @common.Req() request: Request,
+    @common.Param() params: DayScheduleWhereUniqueInput
+  ): Promise<ScheduleInterval[]> {
+    const query = plainToClass(ScheduleIntervalFindManyArgs, request.query);
+    const results = await this.service.findScheduleIntervals(params.id, {
+      ...query,
+      select: {
+        category: true,
+        createdAt: true,
+
+        daySchedule: {
+          select: {
+            id: true,
+          },
+        },
+
+        id: true,
+        label: true,
+        updatedAt: true,
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @common.Post("/:id/scheduleIntervals")
+  @nestAccessControl.UseRoles({
+    resource: "DaySchedule",
+    action: "update",
+    possession: "any",
+  })
+  async connectScheduleIntervals(
+    @common.Param() params: DayScheduleWhereUniqueInput,
+    @common.Body() body: ScheduleIntervalWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      scheduleIntervals: {
+        connect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Patch("/:id/scheduleIntervals")
+  @nestAccessControl.UseRoles({
+    resource: "DaySchedule",
+    action: "update",
+    possession: "any",
+  })
+  async updateScheduleIntervals(
+    @common.Param() params: DayScheduleWhereUniqueInput,
+    @common.Body() body: ScheduleIntervalWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      scheduleIntervals: {
+        set: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Delete("/:id/scheduleIntervals")
+  @nestAccessControl.UseRoles({
+    resource: "DaySchedule",
+    action: "update",
+    possession: "any",
+  })
+  async disconnectScheduleIntervals(
+    @common.Param() params: DayScheduleWhereUniqueInput,
+    @common.Body() body: ScheduleIntervalWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      scheduleIntervals: {
+        disconnect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
   }
 }

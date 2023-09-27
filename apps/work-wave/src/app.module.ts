@@ -6,6 +6,7 @@ import { CompanyModule } from "./company/company.module";
 import { TeamModule } from "./team/team.module";
 import { DayScheduleModule } from "./daySchedule/daySchedule.module";
 import { StatusModule } from "./status/status.module";
+import { ScheduleIntervalModule } from "./scheduleInterval/scheduleInterval.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
@@ -27,6 +28,7 @@ import { AuthModule } from "./auth/auth.module";
     TeamModule,
     DayScheduleModule,
     StatusModule,
+    ScheduleIntervalModule,
     HealthModule,
     PrismaModule,
     SecretsManagerModule,

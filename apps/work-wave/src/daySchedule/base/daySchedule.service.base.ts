@@ -10,7 +10,13 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, DaySchedule, Status, User } from "@prisma/client";
+import {
+  Prisma,
+  DaySchedule,
+  ScheduleInterval,
+  Status,
+  User,
+} from "@prisma/client";
 
 export class DayScheduleServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -45,6 +51,17 @@ export class DayScheduleServiceBase {
     args: Prisma.SelectSubset<T, Prisma.DayScheduleDeleteArgs>
   ): Promise<DaySchedule> {
     return this.prisma.daySchedule.delete(args);
+  }
+
+  async findScheduleIntervals(
+    parentId: string,
+    args: Prisma.ScheduleIntervalFindManyArgs
+  ): Promise<ScheduleInterval[]> {
+    return this.prisma.daySchedule
+      .findUniqueOrThrow({
+        where: { id: parentId },
+      })
+      .scheduleIntervals(args);
   }
 
   async getStatus(parentId: string): Promise<Status | null> {
