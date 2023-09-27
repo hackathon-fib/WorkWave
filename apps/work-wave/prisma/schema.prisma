@@ -46,7 +46,6 @@ model DaySchedule {
   createdAt         DateTime           @default(now())
   date              DateTime?
   id                String             @id @default(cuid())
-  intervals         Json?
   note              String?
   scheduleIntervals ScheduleInterval[]
   status            Status?            @relation(fields: [statusId], references: [id])

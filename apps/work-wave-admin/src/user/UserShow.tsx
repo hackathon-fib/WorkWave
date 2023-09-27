@@ -38,7 +38,6 @@ export const UserShow = (props: ShowProps): React.ReactElement => {
             <DateField source="createdAt" label="Created At" />
             <TextField label="Date" source="date" />
             <TextField label="ID" source="id" />
-            <TextField label="Intervals" source="intervals" />
             <TextField label="Note" source="note" />
             <ReferenceField
               label="Status"

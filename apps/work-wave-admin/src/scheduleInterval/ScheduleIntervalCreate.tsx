@@ -21,7 +21,7 @@ export const ScheduleIntervalCreate = (
         <ReferenceInput
           source="daySchedule.id"
           reference="DaySchedule"
-          label="DaySchedule"
+          label="DaySchedules"
         >
           <SelectInput optionText={DayScheduleTitle} />
         </ReferenceInput>

@@ -22,7 +22,6 @@ export const DayScheduleShow = (props: ShowProps): React.ReactElement => {
         <DateField source="createdAt" label="Created At" />
         <TextField label="Date" source="date" />
         <TextField label="ID" source="id" />
-        <TextField label="Intervals" source="intervals" />
         <TextField label="Note" source="note" />
         <ReferenceField label="Status" source="status.id" reference="Status">
           <TextField source={STATUS_TITLE_FIELD} />
@@ -40,7 +39,7 @@ export const DayScheduleShow = (props: ShowProps): React.ReactElement => {
             <TextField label="category" source="category" />
             <DateField source="createdAt" label="Created At" />
             <ReferenceField
-              label="DaySchedule"
+              label="DaySchedules"
               source="dayschedule.id"
               reference="DaySchedule"
             >

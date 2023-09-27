@@ -20,7 +20,7 @@ export const ScheduleIntervalEdit = (props: EditProps): React.ReactElement => {
         <ReferenceInput
           source="daySchedule.id"
           reference="DaySchedule"
-          label="DaySchedule"
+          label="DaySchedules"
         >
           <SelectInput optionText={DayScheduleTitle} />
         </ReferenceInput>
