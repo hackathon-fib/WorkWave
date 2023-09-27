@@ -1,7 +1,9 @@
-import { PrismaClient } from "@prisma/client";
+import {PrismaClient} from "@prisma/client";
 
 import {hash} from "bcrypt";
 import {Salt, parseSalt} from "../../src/auth/password.service";
+import * as dotenv from "dotenv";
+
 const prisma = new PrismaClient();
 
 async function userSeeder(bcryptSalt: Salt) {
@@ -26,7 +28,7 @@ async function userSeeder(bcryptSalt: Salt) {
         {
             firstName: "Niall",
             lastName: "Kidd",
-            username: "niall.kodd",
+            username: "niall.kidd",
             password: await hash("admin", bcryptSalt),
             roles: ["user"],
             teams: ["WorkWave"]
@@ -70,14 +72,27 @@ async function userSeeder(bcryptSalt: Salt) {
         });
     }
 
-    console.log('Teams seeded successfully.');
+    console.log('Users seeded successfully.');
 
 }
 
-userSeeder()
-    .catch((error) => {
-      console.error('Error seeding companies:', error);
-    })
-    .finally(async () => {
-      await prisma.$disconnect();
-    });
+
+if (require.main === module) {
+    dotenv.config();
+
+    const {BCRYPT_SALT} = process.env;
+
+    if (!BCRYPT_SALT) {
+        throw new Error("BCRYPT_SALT environment variable must be defined");
+    }
+    const salt = parseSalt(BCRYPT_SALT);
+
+
+    userSeeder(salt)
+        .catch((error) => {
+            console.error('Error seeding users:', error);
+        })
+        .finally(async () => {
+            await prisma.$disconnect();
+        });
+}
