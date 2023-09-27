@@ -319,8 +319,10 @@ export class DayScheduleControllerBase {
           },
         },
 
+        end: true,
         id: true,
         label: true,
+        start: true,
         updatedAt: true,
       },
     });

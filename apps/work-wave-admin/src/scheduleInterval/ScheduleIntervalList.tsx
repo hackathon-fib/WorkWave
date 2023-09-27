@@ -29,8 +29,10 @@ export const ScheduleIntervalList = (props: ListProps): React.ReactElement => {
         >
           <TextField source={DAYSCHEDULE_TITLE_FIELD} />
         </ReferenceField>
+        <TextField label="end" source="end" />
         <TextField label="ID" source="id" />
         <TextField label="label" source="label" />
+        <TextField label="start" source="start" />
         <DateField source="updatedAt" label="Updated At" />
       </Datagrid>
     </List>
