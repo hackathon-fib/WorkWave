@@ -16,6 +16,7 @@ import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { TeamListRelationFilter } from "../../team/base/TeamListRelationFilter";
+import { UserListRelationFilter } from "../../user/base/UserListRelationFilter";
 
 @InputType()
 class CompanyWhereInput {
@@ -63,6 +64,18 @@ class CompanyWhereInput {
     nullable: true,
   })
   teams?: TeamListRelationFilter;
+
+  @ApiProperty({
+    required: false,
+    type: () => UserListRelationFilter,
+  })
+  @ValidateNested()
+  @Type(() => UserListRelationFilter)
+  @IsOptional()
+  @Field(() => UserListRelationFilter, {
+    nullable: true,
+  })
+  users?: UserListRelationFilter;
 }
 
 export { CompanyWhereInput as CompanyWhereInput };

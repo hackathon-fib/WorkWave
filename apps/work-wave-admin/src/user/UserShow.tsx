@@ -4,20 +4,24 @@ import {
   Show,
   SimpleShowLayout,
   ShowProps,
-  DateField,
+  ReferenceField,
   TextField,
+  DateField,
   ReferenceManyField,
   Datagrid,
-  ReferenceField,
 } from "react-admin";
 
 import { STATUS_TITLE_FIELD } from "../status/StatusTitle";
 import { USER_TITLE_FIELD } from "./UserTitle";
+import { COMPANY_TITLE_FIELD } from "../company/CompanyTitle";
 
 export const UserShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
+        <ReferenceField label="Company" source="company.id" reference="Company">
+          <TextField source={COMPANY_TITLE_FIELD} />
+        </ReferenceField>
         <DateField source="createdAt" label="Created At" />
         <TextField label="First Name" source="firstName" />
         <TextField label="ID" source="id" />

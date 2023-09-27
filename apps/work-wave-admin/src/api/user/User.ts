@@ -1,8 +1,10 @@
+import { Company } from "../company/Company";
 import { DaySchedule } from "../daySchedule/DaySchedule";
 import { JsonValue } from "type-fest";
 import { Team } from "../team/Team";
 
 export type User = {
+  company?: Company | null;
   createdAt: Date;
   daySchedules?: Array<DaySchedule>;
   firstName: string | null;

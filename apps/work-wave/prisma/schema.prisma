@@ -8,6 +8,8 @@ generator client {
 }
 
 model User {
+  company      Company?      @relation(fields: [companyId], references: [id])
+  companyId    String?
   createdAt    DateTime      @default(now())
   daySchedules DaySchedule[]
   firstName    String?
@@ -27,6 +29,7 @@ model Company {
   phone     String?
   teams     Team[]
   updatedAt DateTime @updatedAt
+  users     User[]
 }
 
 model Team {

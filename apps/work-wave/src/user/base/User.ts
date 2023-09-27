@@ -11,7 +11,8 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, ValidateNested, IsOptional, IsString } from "class-validator";
+import { Company } from "../../company/base/Company";
+import { ValidateNested, IsOptional, IsDate, IsString } from "class-validator";
 import { Type } from "class-transformer";
 import { DaySchedule } from "../../daySchedule/base/DaySchedule";
 import { IsJSONValue } from "@app/custom-validators";
@@ -21,6 +22,15 @@ import { Team } from "../../team/base/Team";
 
 @ObjectType()
 class User {
+  @ApiProperty({
+    required: false,
+    type: () => Company,
+  })
+  @ValidateNested()
+  @Type(() => Company)
+  @IsOptional()
+  company?: Company | null;
+
   @ApiProperty({
     required: true,
   })
