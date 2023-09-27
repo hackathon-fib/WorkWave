@@ -6,10 +6,10 @@ import createPalette from "@material-ui/core/styles/createPalette";
 const palette = createPalette(
   merge({}, defaultTheme.palette, {
     primary: {
-      main: "#20a4f3",
+      main: "#00493A",
     },
     secondary: {
-      main: "#7950ed",
+      main: "#00735C",
     },
     error: {
       main: "#e93c51",

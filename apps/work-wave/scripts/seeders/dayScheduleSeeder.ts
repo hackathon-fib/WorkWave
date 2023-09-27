@@ -10,24 +10,17 @@ export async function seed(prisma: any) {
     const endDate = new Date("2023-12-31");
 
     users.forEach(function (user: any) {
-        let currentDate = startDate;
+        let currentDate = new Date(startDate);
         while (currentDate <= endDate) {
             userSchedules.push({
                 date: currentDate.toISOString(),
                 note: faker.lorem.sentence(),
                 userID: user.id,
-                intervals: [{
-                    start: currentDate.toISOString(),
-                    end: currentDate.toISOString(),
-                    label: faker.lorem.word(),
-                }]
             });
 
             currentDate.setDate(currentDate.getDate() + 1);
         }
     });
-
-
 
   await prisma.daySchedule.createMany({ data: userSchedules});
 

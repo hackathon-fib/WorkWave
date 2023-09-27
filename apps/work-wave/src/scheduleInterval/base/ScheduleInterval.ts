@@ -46,6 +46,17 @@ class ScheduleInterval {
   daySchedule?: DaySchedule | null;
 
   @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  end!: Date | null;
+
+  @ApiProperty({
     required: true,
     type: String,
   })
@@ -63,6 +74,17 @@ class ScheduleInterval {
     nullable: true,
   })
   label!: string | null;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  start!: Date | null;
 
   @ApiProperty({
     required: true,

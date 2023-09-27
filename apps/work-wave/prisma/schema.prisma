@@ -69,7 +69,9 @@ model ScheduleInterval {
   createdAt     DateTime     @default(now())
   daySchedule   DaySchedule? @relation(fields: [dayScheduleId], references: [id])
   dayScheduleId String?
+  end           DateTime?
   id            String       @id @default(cuid())
   label         String?
+  start         DateTime?
   updatedAt     DateTime     @updatedAt
 }

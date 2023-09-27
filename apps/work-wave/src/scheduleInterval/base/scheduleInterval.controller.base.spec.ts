@@ -21,31 +21,39 @@ const existingId = "existingId";
 const CREATE_INPUT = {
   category: "exampleCategory",
   createdAt: new Date(),
+  end: new Date(),
   id: "exampleId",
   label: "exampleLabel",
+  start: new Date(),
   updatedAt: new Date(),
 };
 const CREATE_RESULT = {
   category: "exampleCategory",
   createdAt: new Date(),
+  end: new Date(),
   id: "exampleId",
   label: "exampleLabel",
+  start: new Date(),
   updatedAt: new Date(),
 };
 const FIND_MANY_RESULT = [
   {
     category: "exampleCategory",
     createdAt: new Date(),
+    end: new Date(),
     id: "exampleId",
     label: "exampleLabel",
+    start: new Date(),
     updatedAt: new Date(),
   },
 ];
 const FIND_ONE_RESULT = {
   category: "exampleCategory",
   createdAt: new Date(),
+  end: new Date(),
   id: "exampleId",
   label: "exampleLabel",
+  start: new Date(),
   updatedAt: new Date(),
 };
 
@@ -132,6 +140,8 @@ describe("ScheduleInterval", () => {
       .expect({
         ...CREATE_RESULT,
         createdAt: CREATE_RESULT.createdAt.toISOString(),
+        end: CREATE_RESULT.end.toISOString(),
+        start: CREATE_RESULT.start.toISOString(),
         updatedAt: CREATE_RESULT.updatedAt.toISOString(),
       });
   });
@@ -144,6 +154,8 @@ describe("ScheduleInterval", () => {
         {
           ...FIND_MANY_RESULT[0],
           createdAt: FIND_MANY_RESULT[0].createdAt.toISOString(),
+          end: FIND_MANY_RESULT[0].end.toISOString(),
+          start: FIND_MANY_RESULT[0].start.toISOString(),
           updatedAt: FIND_MANY_RESULT[0].updatedAt.toISOString(),
         },
       ]);
@@ -167,6 +179,8 @@ describe("ScheduleInterval", () => {
       .expect({
         ...FIND_ONE_RESULT,
         createdAt: FIND_ONE_RESULT.createdAt.toISOString(),
+        end: FIND_ONE_RESULT.end.toISOString(),
+        start: FIND_ONE_RESULT.start.toISOString(),
         updatedAt: FIND_ONE_RESULT.updatedAt.toISOString(),
       });
   });
@@ -180,6 +194,8 @@ describe("ScheduleInterval", () => {
       .expect({
         ...CREATE_RESULT,
         createdAt: CREATE_RESULT.createdAt.toISOString(),
+        end: CREATE_RESULT.end.toISOString(),
+        start: CREATE_RESULT.start.toISOString(),
         updatedAt: CREATE_RESULT.updatedAt.toISOString(),
       })
       .then(function () {
