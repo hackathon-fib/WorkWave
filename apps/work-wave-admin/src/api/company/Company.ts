@@ -1,0 +1,10 @@
+import { Team } from "../team/Team";
+
+export type Company = {
+  createdAt: Date;
+  id: string;
+  Name: string;
+  phone: string | null;
+  teams?: Array<Team>;
+  updatedAt: Date;
+};

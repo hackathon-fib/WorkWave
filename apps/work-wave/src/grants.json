@@ -6,7 +6,19 @@
     "attributes": "*"
   },
   {
+    "role": "admin",
+    "resource": "User",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
     "role": "user",
+    "resource": "User",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
     "resource": "User",
     "action": "create:any",
     "attributes": "*"
@@ -18,7 +30,19 @@
     "attributes": "*"
   },
   {
+    "role": "admin",
+    "resource": "User",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
     "role": "user",
+    "resource": "User",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
     "resource": "User",
     "action": "delete:any",
     "attributes": "*"
@@ -30,122 +54,248 @@
     "attributes": "*"
   },
   {
-    "role": "user",
-    "resource": "Order",
-    "action": "read:own",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Order",
-    "action": "create:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Order",
-    "action": "update:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Order",
-    "action": "delete:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Order",
+    "role": "admin",
+    "resource": "User",
     "action": "read:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Customer",
+    "resource": "Company",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Company",
     "action": "read:own",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Customer",
+    "resource": "Company",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Company",
     "action": "create:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Customer",
+    "resource": "Company",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Company",
     "action": "update:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Customer",
+    "resource": "Company",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Company",
     "action": "delete:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Customer",
+    "resource": "Company",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Company",
     "action": "read:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Address",
+    "resource": "Team",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Team",
     "action": "read:own",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Address",
+    "resource": "Team",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Team",
     "action": "create:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Address",
+    "resource": "Team",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Team",
     "action": "update:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Address",
+    "resource": "Team",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Team",
     "action": "delete:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Address",
+    "resource": "Team",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Team",
     "action": "read:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Product",
+    "resource": "DaySchedule",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "DaySchedule",
     "action": "read:own",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Product",
+    "resource": "DaySchedule",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "DaySchedule",
     "action": "create:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Product",
+    "resource": "DaySchedule",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "DaySchedule",
     "action": "update:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Product",
+    "resource": "DaySchedule",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "DaySchedule",
     "action": "delete:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Product",
+    "resource": "DaySchedule",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "DaySchedule",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Status",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Status",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Status",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Status",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Status",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Status",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Status",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Status",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Status",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Status",
     "action": "read:any",
     "attributes": "*"
   }
