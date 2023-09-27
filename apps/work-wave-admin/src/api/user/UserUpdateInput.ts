@@ -1,5 +1,6 @@
 import { DayScheduleUpdateManyWithoutUsersInput } from "./DayScheduleUpdateManyWithoutUsersInput";
 import { InputJsonValue } from "../../types";
+import { TeamUpdateManyWithoutUsersInput } from "./TeamUpdateManyWithoutUsersInput";
 
 export type UserUpdateInput = {
   daySchedules?: DayScheduleUpdateManyWithoutUsersInput;
@@ -7,5 +8,6 @@ export type UserUpdateInput = {
   lastName?: string | null;
   password?: string;
   roles?: InputJsonValue;
+  team?: TeamUpdateManyWithoutUsersInput;
   username?: string;
 };

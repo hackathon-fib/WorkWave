@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import {
   Create,
   SimpleForm,
@@ -6,8 +7,12 @@ import {
   ReferenceInput,
   SelectInput,
   TextInput,
+  ReferenceArrayInput,
+  SelectArrayInput,
 } from "react-admin";
+
 import { CompanyTitle } from "../company/CompanyTitle";
+import { UserTitle } from "../user/UserTitle";
 
 export const TeamCreate = (props: CreateProps): React.ReactElement => {
   return (
@@ -17,6 +22,14 @@ export const TeamCreate = (props: CreateProps): React.ReactElement => {
           <SelectInput optionText={CompanyTitle} />
         </ReferenceInput>
         <TextInput label="Name" source="name" />
+        <ReferenceArrayInput
+          source="users"
+          reference="User"
+          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+          format={(value: any) => value && value.map((v: any) => v.id)}
+        >
+          <SelectArrayInput optionText={UserTitle} />
+        </ReferenceArrayInput>
       </SimpleForm>
     </Create>
   );

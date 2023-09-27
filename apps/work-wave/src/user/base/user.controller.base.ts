@@ -30,6 +30,9 @@ import { User } from "./User";
 import { DayScheduleFindManyArgs } from "../../daySchedule/base/DayScheduleFindManyArgs";
 import { DaySchedule } from "../../daySchedule/base/DaySchedule";
 import { DayScheduleWhereUniqueInput } from "../../daySchedule/base/DayScheduleWhereUniqueInput";
+import { TeamFindManyArgs } from "../../team/base/TeamFindManyArgs";
+import { Team } from "../../team/base/Team";
+import { TeamWhereUniqueInput } from "../../team/base/TeamWhereUniqueInput";
 
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
@@ -305,6 +308,108 @@ export class UserControllerBase {
   ): Promise<void> {
     const data = {
       daySchedules: {
+        disconnect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @common.Get("/:id/team")
+  @ApiNestedQuery(TeamFindManyArgs)
+  @nestAccessControl.UseRoles({
+    resource: "Team",
+    action: "read",
+    possession: "any",
+  })
+  async findManyTeam(
+    @common.Req() request: Request,
+    @common.Param() params: UserWhereUniqueInput
+  ): Promise<Team[]> {
+    const query = plainToClass(TeamFindManyArgs, request.query);
+    const results = await this.service.findTeam(params.id, {
+      ...query,
+      select: {
+        company: {
+          select: {
+            id: true,
+          },
+        },
+
+        createdAt: true,
+        id: true,
+        name: true,
+        updatedAt: true,
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @common.Post("/:id/team")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async connectTeam(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: TeamWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      team: {
+        connect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Patch("/:id/team")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async updateTeam(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: TeamWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      team: {
+        set: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Delete("/:id/team")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async disconnectTeam(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: TeamWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      team: {
         disconnect: body,
       },
     };

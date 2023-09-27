@@ -26,6 +26,8 @@ import { TeamCountArgs } from "./TeamCountArgs";
 import { TeamFindManyArgs } from "./TeamFindManyArgs";
 import { TeamFindUniqueArgs } from "./TeamFindUniqueArgs";
 import { Team } from "./Team";
+import { UserFindManyArgs } from "../../user/base/UserFindManyArgs";
+import { User } from "../../user/base/User";
 import { Company } from "../../company/base/Company";
 import { TeamService } from "../team.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
@@ -147,6 +149,26 @@ export class TeamResolverBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [User], { name: "users" })
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "read",
+    possession: "any",
+  })
+  async resolveFieldUsers(
+    @graphql.Parent() parent: Team,
+    @graphql.Args() args: UserFindManyArgs
+  ): Promise<User[]> {
+    const results = await this.service.findUsers(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
