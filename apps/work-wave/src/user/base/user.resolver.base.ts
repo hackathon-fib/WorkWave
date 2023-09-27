@@ -30,6 +30,7 @@ import { DayScheduleFindManyArgs } from "../../daySchedule/base/DayScheduleFindM
 import { DaySchedule } from "../../daySchedule/base/DaySchedule";
 import { TeamFindManyArgs } from "../../team/base/TeamFindManyArgs";
 import { Team } from "../../team/base/Team";
+import { Company } from "../../company/base/Company";
 import { UserService } from "../user.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => User)
@@ -90,7 +91,15 @@ export class UserResolverBase {
   async createUser(@graphql.Args() args: CreateUserArgs): Promise<User> {
     return await this.service.create({
       ...args,
-      data: args.data,
+      data: {
+        ...args.data,
+
+        company: args.data.company
+          ? {
+              connect: args.data.company,
+            }
+          : undefined,
+      },
     });
   }
 
@@ -105,7 +114,15 @@ export class UserResolverBase {
     try {
       return await this.service.update({
         ...args,
-        data: args.data,
+        data: {
+          ...args.data,
+
+          company: args.data.company
+            ? {
+                connect: args.data.company,
+              }
+            : undefined,
+        },
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -174,5 +191,26 @@ export class UserResolverBase {
     }
 
     return results;
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => Company, {
+    nullable: true,
+    name: "company",
+  })
+  @nestAccessControl.UseRoles({
+    resource: "Company",
+    action: "read",
+    possession: "any",
+  })
+  async resolveFieldCompany(
+    @graphql.Parent() parent: User
+  ): Promise<Company | null> {
+    const result = await this.service.getCompany(parent.id);
+
+    if (!result) {
+      return null;
+    }
+    return result;
   }
 }

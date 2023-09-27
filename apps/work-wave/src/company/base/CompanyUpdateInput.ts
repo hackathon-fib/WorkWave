@@ -14,6 +14,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { IsString, IsOptional, ValidateNested } from "class-validator";
 import { TeamUpdateManyWithoutCompaniesInput } from "./TeamUpdateManyWithoutCompaniesInput";
 import { Type } from "class-transformer";
+import { UserUpdateManyWithoutCompaniesInput } from "./UserUpdateManyWithoutCompaniesInput";
 
 @InputType()
 class CompanyUpdateInput {
@@ -50,6 +51,18 @@ class CompanyUpdateInput {
     nullable: true,
   })
   teams?: TeamUpdateManyWithoutCompaniesInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => UserUpdateManyWithoutCompaniesInput,
+  })
+  @ValidateNested()
+  @Type(() => UserUpdateManyWithoutCompaniesInput)
+  @IsOptional()
+  @Field(() => UserUpdateManyWithoutCompaniesInput, {
+    nullable: true,
+  })
+  users?: UserUpdateManyWithoutCompaniesInput;
 }
 
 export { CompanyUpdateInput as CompanyUpdateInput };

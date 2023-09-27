@@ -251,6 +251,12 @@ export class TeamControllerBase {
     const results = await this.service.findUsers(params.id, {
       ...query,
       select: {
+        company: {
+          select: {
+            id: true,
+          },
+        },
+
         createdAt: true,
         firstName: true,
         id: true,
