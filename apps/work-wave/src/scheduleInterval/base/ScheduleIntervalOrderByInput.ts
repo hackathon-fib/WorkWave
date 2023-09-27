@@ -61,6 +61,17 @@ class ScheduleIntervalOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  end?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   id?: SortOrder;
 
   @ApiProperty({
@@ -73,6 +84,17 @@ class ScheduleIntervalOrderByInput {
     nullable: true,
   })
   label?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  start?: SortOrder;
 
   @ApiProperty({
     required: false,

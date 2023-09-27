@@ -69,8 +69,10 @@ export class ScheduleIntervalControllerBase {
           },
         },
 
+        end: true,
         id: true,
         label: true,
+        start: true,
         updatedAt: true,
       },
     });
@@ -102,8 +104,10 @@ export class ScheduleIntervalControllerBase {
           },
         },
 
+        end: true,
         id: true,
         label: true,
+        start: true,
         updatedAt: true,
       },
     });
@@ -136,8 +140,10 @@ export class ScheduleIntervalControllerBase {
           },
         },
 
+        end: true,
         id: true,
         label: true,
+        start: true,
         updatedAt: true,
       },
     });
@@ -187,8 +193,10 @@ export class ScheduleIntervalControllerBase {
             },
           },
 
+          end: true,
           id: true,
           label: true,
+          start: true,
           updatedAt: true,
         },
       });
@@ -229,8 +237,10 @@ export class ScheduleIntervalControllerBase {
             },
           },
 
+          end: true,
           id: true,
           label: true,
+          start: true,
           updatedAt: true,
         },
       });

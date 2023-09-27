@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import {
   Create,
   SimpleForm,
@@ -6,7 +7,9 @@ import {
   TextInput,
   ReferenceInput,
   SelectInput,
+  DateTimeInput,
 } from "react-admin";
+
 import { DayScheduleTitle } from "../daySchedule/DayScheduleTitle";
 
 export const ScheduleIntervalCreate = (
@@ -23,7 +26,9 @@ export const ScheduleIntervalCreate = (
         >
           <SelectInput optionText={DayScheduleTitle} />
         </ReferenceInput>
+        <DateTimeInput label="end" source="end" />
         <TextInput label="label" source="label" />
+        <DateTimeInput label="start" source="start" />
       </SimpleForm>
     </Create>
   );
