@@ -26,6 +26,8 @@ import { DayScheduleCountArgs } from "./DayScheduleCountArgs";
 import { DayScheduleFindManyArgs } from "./DayScheduleFindManyArgs";
 import { DayScheduleFindUniqueArgs } from "./DayScheduleFindUniqueArgs";
 import { DaySchedule } from "./DaySchedule";
+import { ScheduleIntervalFindManyArgs } from "../../scheduleInterval/base/ScheduleIntervalFindManyArgs";
+import { ScheduleInterval } from "../../scheduleInterval/base/ScheduleInterval";
 import { Status } from "../../status/base/Status";
 import { User } from "../../user/base/User";
 import { DayScheduleService } from "../daySchedule.service";
@@ -170,6 +172,26 @@ export class DayScheduleResolverBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [ScheduleInterval], { name: "scheduleIntervals" })
+  @nestAccessControl.UseRoles({
+    resource: "ScheduleInterval",
+    action: "read",
+    possession: "any",
+  })
+  async resolveFieldScheduleIntervals(
+    @graphql.Parent() parent: DaySchedule,
+    @graphql.Args() args: ScheduleIntervalFindManyArgs
+  ): Promise<ScheduleInterval[]> {
+    const results = await this.service.findScheduleIntervals(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)

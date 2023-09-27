@@ -16,6 +16,7 @@ import { Type } from "class-transformer";
 import { IsJSONValue } from "@app/custom-validators";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
+import { ScheduleIntervalCreateNestedManyWithoutDaySchedulesInput } from "./ScheduleIntervalCreateNestedManyWithoutDaySchedulesInput";
 import { StatusWhereUniqueInput } from "../../status/base/StatusWhereUniqueInput";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 
@@ -52,6 +53,18 @@ class DayScheduleCreateInput {
     nullable: true,
   })
   note?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => ScheduleIntervalCreateNestedManyWithoutDaySchedulesInput,
+  })
+  @ValidateNested()
+  @Type(() => ScheduleIntervalCreateNestedManyWithoutDaySchedulesInput)
+  @IsOptional()
+  @Field(() => ScheduleIntervalCreateNestedManyWithoutDaySchedulesInput, {
+    nullable: true,
+  })
+  scheduleIntervals?: ScheduleIntervalCreateNestedManyWithoutDaySchedulesInput;
 
   @ApiProperty({
     required: false,

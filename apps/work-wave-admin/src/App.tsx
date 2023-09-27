@@ -25,6 +25,10 @@ import { StatusList } from "./status/StatusList";
 import { StatusCreate } from "./status/StatusCreate";
 import { StatusEdit } from "./status/StatusEdit";
 import { StatusShow } from "./status/StatusShow";
+import { ScheduleIntervalList } from "./scheduleInterval/ScheduleIntervalList";
+import { ScheduleIntervalCreate } from "./scheduleInterval/ScheduleIntervalCreate";
+import { ScheduleIntervalEdit } from "./scheduleInterval/ScheduleIntervalEdit";
+import { ScheduleIntervalShow } from "./scheduleInterval/ScheduleIntervalShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -85,6 +89,13 @@ const App = (): React.ReactElement => {
           edit={StatusEdit}
           create={StatusCreate}
           show={StatusShow}
+        />
+        <Resource
+          name="ScheduleInterval"
+          list={ScheduleIntervalList}
+          edit={ScheduleIntervalEdit}
+          create={ScheduleIntervalCreate}
+          show={ScheduleIntervalShow}
         />
       </Admin>
     </div>
