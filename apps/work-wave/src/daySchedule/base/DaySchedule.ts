@@ -16,6 +16,7 @@ import { Type } from "class-transformer";
 import { IsJSONValue } from "@app/custom-validators";
 import { GraphQLJSON } from "graphql-type-json";
 import { JsonValue } from "type-fest";
+import { ScheduleInterval } from "../../scheduleInterval/base/ScheduleInterval";
 import { Status } from "../../status/base/Status";
 import { User } from "../../user/base/User";
 
@@ -68,6 +69,15 @@ class DaySchedule {
     nullable: true,
   })
   note!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => [ScheduleInterval],
+  })
+  @ValidateNested()
+  @Type(() => ScheduleInterval)
+  @IsOptional()
+  scheduleIntervals?: Array<ScheduleInterval>;
 
   @ApiProperty({
     required: false,
