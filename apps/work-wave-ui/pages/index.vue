@@ -9,16 +9,16 @@ import { useUserStore } from '../stores/user';
 const userStore = useUserStore();
 
 definePageMeta({
-  validate: async (route) => {
-    // Check if the id is made up of digits
-    if (!userStore.accessToken) {
-        return false;
-    }
-  }
+  // validate: async (route) => {
+  //   // Check if the id is made up of digits
+  //   if (!userStore.accessToken) {
+  //       return false;
+  //   }
+  // }
 })
 </script>
 
 
 <style scoped>
 
-</style>../stores/user
+</style>

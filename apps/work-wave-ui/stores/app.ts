@@ -3,13 +3,15 @@ import apiCall from '../api'
 
 type AppState = {
   errorModal: any,
-  loading: Boolean
+  loading: Boolean,
+  showLoadingModal: Boolean
 }
 
 export const useAppStore = defineStore('app', {
   state: (): AppState => ({
     errorModal: {},
-    loading: false
+    loading: false,
+    showLoadingModal: false
   }),
   getters: {},
   actions: {

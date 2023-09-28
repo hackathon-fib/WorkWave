@@ -6,7 +6,7 @@ import api from '../api';
 const auth = {
   post: {
     async login(data = {}): Promise<ApiResponse> {
-      return await api(HTTP_STATUS.POST, `/login`, data);
+      return await api(HTTP_STATUS.POST, `/api/login`, data);
     }
   },
 };
