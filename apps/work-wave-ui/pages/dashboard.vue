@@ -69,26 +69,26 @@ const usersStore = useUsersStore();
 const team = ref('')
 const showMeetingModal = ref(false);
 
-const teams = computed(() => {
-    return ['feeditback', 'yoodee', 'product other', 'front-end', 'back-end', 'testers'];
-});
+// const teams = computed(() => {
+//     return ['feeditback', 'yoodee', 'product other', 'front-end', 'back-end', 'testers'];
+// });
 
 const loadMeetingModal = () => {
     showMeetingModal.value = true;
 }
 
-// const { users: any } = await useAsyncData(
-//   'users',
-//   () => {
+const { data: users, pending } = useAsyncData<any>(
+  "users",
+  () => usersStore.getUsersForTeam(),
+  {
+    watch: [team]
+  }
+);
 
-//     }, {
-//     watch: [team]
-//   }
-// )
-
-// const { teams: any} = await useAsyncData('teams', () => {
-
-// });
+const { data: teams } = await useAsyncData(
+    'teams',
+  () => usersStore.getTeams()
+);
 
 definePageMeta({
 //   validate: async (route) => {
