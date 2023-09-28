@@ -29,6 +29,20 @@ export const useUsersStore = defineStore('users', {
 
       return res.data
     },
+    async getUsersForTeam() {
+      this.loading = true;
+
+      const res = await apiCall.users.get.getUsers();
+
+      if (!res) {
+        //blow up here
+      }
+
+      this.users = res.data;
+      this.loading = false;
+
+      return res.data
+    },
     async getTeams() {
       this.loading = true;
 
