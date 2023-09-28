@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, computed } from 'vue'
 import { initFlowbite } from 'flowbite'
 
 onMounted(() => {
@@ -18,7 +18,7 @@ onMounted(() => {
 
 const router = useRouter();
 
-const currentRouteName = router.currentRoute.value.name;
+const currentRouteName = computed(() => router.currentRoute.value.name);
 </script>
 
 <style scoped>

@@ -10,7 +10,7 @@
                 <span class="font-medium">Keep up to date with your team:</span>
                 <ul class="mt-1.5 ml-4 list-disc list-inside">
                     <li>Mark Sewrey updated the time of meeting “Regression Testing Catch Up” to 13:00</li>
-                    <li>Sagar Reddy accepted your meeting requestr</li>
+                    <li>Sagar Reddy accepted your meeting request</li>
                     <li>Niall Kidd updated his location</li>
                 </ul>
             </div>
