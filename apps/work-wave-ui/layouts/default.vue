@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-row">
-    <ww-sidebar />
+    <ww-sidebar v-if="currentRouteName !== 'login'"/>
 
     <div class="w-full">
       <slot />
@@ -14,7 +14,11 @@ import { initFlowbite } from 'flowbite'
 
 onMounted(() => {
   initFlowbite();
-})
+});
+
+const router = useRouter();
+
+const currentRouteName = router.currentRoute.value.name;
 </script>
 
 <style scoped>
