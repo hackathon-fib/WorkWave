@@ -42,6 +42,8 @@ export const useUserStore = defineStore('user', {
     },
     logout() {
       this.accessToken = '';
+      const userAccessCookie = useCookie('userAccess');
+      userAccessCookie.value = '';
 
       navigateTo('login');
     }
