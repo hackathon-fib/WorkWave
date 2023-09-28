@@ -22,6 +22,7 @@ export const useUserStore = defineStore('user', {
         //blow up here
       }
 
+      navigateTo('dashboard');
       this.loading = false;
     },
     async resetState() {
