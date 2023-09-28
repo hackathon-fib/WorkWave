@@ -1,0 +1,113 @@
+// GET /api/users   get by name
+//Request
+{
+  "username": {
+    "equals": "sam.coult"
+  }
+}
+
+//Response
+[
+  {
+    "company": {
+      "id": "cln33m0g3000018om65uauukj"
+    },
+    "createdAt": "2023-09-28T11:35:06.312Z",
+    "firstName": "Samuel",
+    "id": "cln33m24n000d18omdh8g3xj6",
+    "lastName": "Coult",
+    "roles": [
+      "user"
+    ],
+    "updatedAt": "2023-09-28T11:35:06.312Z",
+    "username": "sam.coult"
+  }
+]
+
+
+// get by team
+//Request:
+
+{
+  "team": {
+    "every": {
+      "name": {
+        "equals": "WorkWave"
+      }
+    }
+  }
+}
+
+//Response:
+[
+  {
+    "company": {
+      "id": "cln33m0g3000018om65uauukj"
+    },
+    "createdAt": "2023-09-28T11:35:06.312Z",
+    "firstName": "Samuel",
+    "id": "cln33m24n000d18omdh8g3xj6",
+    "lastName": "Coult",
+    "roles": [
+      "user"
+    ],
+    "updatedAt": "2023-09-28T11:35:06.312Z",
+    "username": "sam.coult"
+  },
+  {
+    "company": {
+      "id": "cln33m0g3000018om65uauukj"
+    },
+    "createdAt": "2023-09-28T11:35:06.810Z",
+    "firstName": "Niall",
+    "id": "cln33m2ii000f18ommyw4yaka",
+    "lastName": "Kidd",
+    "roles": [
+      "user"
+    ],
+    "updatedAt": "2023-09-28T11:35:06.810Z",
+    "username": "niall.kidd"
+  },
+  {
+    "company": {
+      "id": "cln33m0g3000018om65uauukj"
+    },
+    "createdAt": "2023-09-28T11:35:07.110Z",
+    "firstName": "Mark",
+    "id": "cln33m2qu000h18ombjp4r3ww",
+    "lastName": "Sewrey",
+    "roles": [
+      "user"
+    ],
+    "updatedAt": "2023-09-28T11:35:07.110Z",
+    "username": "mark.sewrey"
+  },
+  {
+    "company": {
+      "id": "cln33m0g3000018om65uauukj"
+    },
+    "createdAt": "2023-09-28T11:35:07.431Z",
+    "firstName": "Sagar",
+    "id": "cln33m2zr000j18omddfo8hw1",
+    "lastName": "Reddy",
+    "roles": [
+      "user"
+    ],
+    "updatedAt": "2023-09-28T11:35:07.431Z",
+    "username": "sagar.reddy"
+  },
+  {
+    "company": {
+      "id": "cln33m0g3000018om65uauukj"
+    },
+    "createdAt": "2023-09-28T11:35:07.751Z",
+    "firstName": "Hayley",
+    "id": "cln33m38n000l18omulky7ep5",
+    "lastName": "Margison",
+    "roles": [
+      "user"
+    ],
+    "updatedAt": "2023-09-28T11:35:07.751Z",
+    "username": "Hayley.Margison"
+  }
+]
