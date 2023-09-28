@@ -1,49 +1,40 @@
-import * as dotenv from "dotenv";
-import { PrismaClient } from "@prisma/client";
-import { customSeed } from "./customSeed";
-import { Salt, parseSalt } from "../src/auth/password.service";
-import { hash } from "bcrypt";
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
 
-if (require.main === module) {
-  dotenv.config();
+// Import individual seeders
+const companySeeder = require('./seeders/companySeeder.ts');
+const statusSeeder = require('./seeders/statusSeeder.ts');
+const teamSeeder = require('./seeders/teamSeeder.ts');
+const userSeeder = require('./seeders/userSeeder.ts');
+const dayScheduleSeeder = require('./seeders/dayScheduleSeeder.ts');
+const scheduleIntervalSeeder = require('./seeders/scheduleIntervalSeeder.ts');
 
-  const { BCRYPT_SALT } = process.env;
+export async function main(prisma: any) {
+    try {
+        console.log('Dropping records.');
+        await prisma.scheduleInterval.deleteMany({where: {}})
+        await prisma.daySchedule.deleteMany({where: {}})
+        await prisma.user.deleteMany({where: {}})
+        await prisma.team.deleteMany({where: {}})
+        await prisma.status.deleteMany({where: {}})
+        await prisma.company.deleteMany({where: {}})
+        console.log('Records dropped.');
 
-  if (!BCRYPT_SALT) {
-    throw new Error("BCRYPT_SALT environment variable must be defined");
-  }
-  const salt = parseSalt(BCRYPT_SALT);
 
-  seed(salt).catch((error) => {
-    console.error(error);
-    process.exit(1);
-  });
+        // Call individual seeders in the desired order
+        await companySeeder.seed(prisma);
+        await statusSeeder.seed(prisma);
+        await teamSeeder.seed(prisma);
+        await userSeeder.seed(prisma);
+        await dayScheduleSeeder.seed(prisma);
+        await scheduleIntervalSeeder.seed(prisma);
+
+        console.log('Seeders executed successfully.');
+    } catch (error) {
+        console.error('Error seeding the database:', error);
+    } finally {
+        await prisma.$disconnect();
+    }
 }
 
-async function seed(bcryptSalt: Salt) {
-  console.info("Seeding database...");
-
-  const client = new PrismaClient();
-
-  const data = {
-    username: "admin",
-    password: await hash("admin", bcryptSalt),
-    roles: ["user"],
-  };
-
-  await client.user.upsert({
-    where: {
-      username: data.username,
-    },
-
-    update: {},
-    create: data,
-  });
-
-  void client.$disconnect();
-
-  console.info("Seeding database with custom seed...");
-  customSeed();
-
-  console.info("Seeded database successfully");
-}
+main(prisma);

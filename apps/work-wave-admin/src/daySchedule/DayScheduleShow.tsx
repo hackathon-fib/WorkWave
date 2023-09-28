@@ -1,5 +1,6 @@
 import * as React from "react";
 
+
 import {
   Show,
   SimpleShowLayout,
@@ -14,8 +15,16 @@ import {
 import { DAYSCHEDULE_TITLE_FIELD } from "./DayScheduleTitle";
 import { STATUS_TITLE_FIELD } from "../status/StatusTitle";
 import { USER_TITLE_FIELD } from "../user/UserTitle";
+import Calendar from '../Components/Calendar';
 
 export const DayScheduleShow = (props: ShowProps): React.ReactElement => {
+
+  const periods = [
+    { start: new Date(2023, 8, 1, 8, 30), end: new Date(2023, 8, 5, 16, 30), label: "Label 1", category: "cat_1" },
+    { start: new Date(2023, 8, 1, 8, 30), end: new Date(2023, 8, 5, 16, 30), label: "Label 3", category: "cat_3" },
+    { start: new Date(2023, 8, 15, 9, 30), end: new Date(2023, 8, 20, 17, 30), label: "Label 2", category: "cat_2" },
+  ];
+
   return (
     <Show {...props}>
       <SimpleShowLayout>
@@ -30,7 +39,8 @@ export const DayScheduleShow = (props: ShowProps): React.ReactElement => {
         <ReferenceField label="UserId" source="user.id" reference="User">
           <TextField source={USER_TITLE_FIELD} />
         </ReferenceField>
-        <ReferenceManyField
+        <Calendar periods={periods} />
+        {/*<ReferenceManyField
           reference="ScheduleInterval"
           target="dayScheduleId"
           label="ScheduleIntervals"
@@ -51,7 +61,7 @@ export const DayScheduleShow = (props: ShowProps): React.ReactElement => {
             <TextField label="start" source="start" />
             <DateField source="updatedAt" label="Updated At" />
           </Datagrid>
-        </ReferenceManyField>
+        </ReferenceManyField>*/}
       </SimpleShowLayout>
     </Show>
   );
