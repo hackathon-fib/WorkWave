@@ -15,6 +15,7 @@
                 </ul>
             </div>
             </div>
+            <ww-gant-chart />
         </div>
         <card class="p-5">
             <label for="teams" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -72,7 +73,7 @@ const teams = computed(() => {
 
 // const { teams: any} = await useAsyncData('teams', () => {
 
-});
+// });
 
 definePageMeta({
 //   validate: async (route) => {

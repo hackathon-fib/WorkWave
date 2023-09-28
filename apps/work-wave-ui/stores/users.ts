@@ -7,7 +7,7 @@ type UsersState = {
   loading: Boolean
 }
 
-export const useUserStore = defineStore('users', {
+export const useUsersStore = defineStore('users', {
   state: (): UserState => ({
     users: [],
     teams: [],
