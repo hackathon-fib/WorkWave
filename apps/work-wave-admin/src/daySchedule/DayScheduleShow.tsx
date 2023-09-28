@@ -1,5 +1,6 @@
 import * as React from "react";
 
+
 import {
   Show,
   SimpleShowLayout,
@@ -19,8 +20,9 @@ import Calendar from '../Components/Calendar';
 export const DayScheduleShow = (props: ShowProps): React.ReactElement => {
 
   const periods = [
-    { start: new Date(2023, 7, 1), end: new Date(2023, 7, 5) },
-    { start: new Date(2023, 7, 15), end: new Date(2023, 7, 20) },
+    { start: new Date(2023, 8, 1, 8, 30), end: new Date(2023, 8, 5, 16, 30), label: "Label 1", category: "cat_1" },
+    { start: new Date(2023, 8, 1, 8, 30), end: new Date(2023, 8, 5, 16, 30), label: "Label 3", category: "cat_3" },
+    { start: new Date(2023, 8, 15, 9, 30), end: new Date(2023, 8, 20, 17, 30), label: "Label 2", category: "cat_2" },
   ];
 
   return (

@@ -2,7 +2,7 @@ import React from 'react';
 import { format, startOfMonth, endOfMonth, startOfWeek, endOfWeek, addDays } from 'date-fns';
 
 interface CalendarProps {
-    periods: { start: Date; end: Date }[];
+    periods: { start: Date; end: Date, label: String, category: String }[];
 }
 
 const Calendar: React.FC<CalendarProps> = ({ periods }) => {
@@ -15,6 +15,7 @@ const Calendar: React.FC<CalendarProps> = ({ periods }) => {
 
     const calendarGrid: Date[][] = [];
     let currentDay = weekStart;
+    let startDay  = new Date(currentDay);
 
     while (currentDay <= weekEnd) {
         const week: Date[] = [];
@@ -38,7 +39,7 @@ const Calendar: React.FC<CalendarProps> = ({ periods }) => {
                 <thead>
                 <tr>
                     <th colSpan={7}>
-                        Date period xxx to yyy
+                        Date period {format(startDay, 'D/MM/YYYY')} to {format(currentDay, 'D/MM/YYYY')}
                     </th>
                 </tr>
                 <tr>
@@ -59,8 +60,9 @@ const Calendar: React.FC<CalendarProps> = ({ periods }) => {
                                 {format(day, 'D')}
                                 <div className="periods">
                                     {periods.map((period, periodIndex) => {
+                                        console.log(day, period);
                                         if (isWithinPeriod(day, period)) {
-                                            return <div key={periodIndex} className="period"></div>;
+                                            return <div key={periodIndex} className="period">{format(period.start, "HH:mm")} - {format(period.end, "HH:mm")} {period.label}</div>;
                                         }
                                         return null;
                                     })}
@@ -90,8 +92,10 @@ const Calendar: React.FC<CalendarProps> = ({ periods }) => {
           }
           .period {
             background-color: #0074d9;
-            height: 5px;
+            height: 20px;
             width: 100%;
+            color: #fff;
+            font-weight:bold;
           }
         `}
             </style>
