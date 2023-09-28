@@ -14,8 +14,15 @@ import {
 import { DAYSCHEDULE_TITLE_FIELD } from "./DayScheduleTitle";
 import { STATUS_TITLE_FIELD } from "../status/StatusTitle";
 import { USER_TITLE_FIELD } from "../user/UserTitle";
+import Calendar from '../Components/Calendar';
 
 export const DayScheduleShow = (props: ShowProps): React.ReactElement => {
+
+  const periods = [
+    { start: new Date(2023, 7, 1), end: new Date(2023, 7, 5) },
+    { start: new Date(2023, 7, 15), end: new Date(2023, 7, 20) },
+  ];
+
   return (
     <Show {...props}>
       <SimpleShowLayout>
@@ -30,6 +37,7 @@ export const DayScheduleShow = (props: ShowProps): React.ReactElement => {
         <ReferenceField label="UserId" source="user.id" reference="User">
           <TextField source={USER_TITLE_FIELD} />
         </ReferenceField>
+        <Calendar periods={periods} />
         <ReferenceManyField
           reference="ScheduleInterval"
           target="dayScheduleId"
