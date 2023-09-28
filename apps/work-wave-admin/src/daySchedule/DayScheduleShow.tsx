@@ -38,7 +38,7 @@ export const DayScheduleShow = (props: ShowProps): React.ReactElement => {
           <TextField source={USER_TITLE_FIELD} />
         </ReferenceField>
         <Calendar periods={periods} />
-        <ReferenceManyField
+        {/*<ReferenceManyField
           reference="ScheduleInterval"
           target="dayScheduleId"
           label="ScheduleIntervals"
@@ -59,7 +59,7 @@ export const DayScheduleShow = (props: ShowProps): React.ReactElement => {
             <TextField label="start" source="start" />
             <DateField source="updatedAt" label="Updated At" />
           </Datagrid>
-        </ReferenceManyField>
+        </ReferenceManyField>*/}
       </SimpleShowLayout>
     </Show>
   );

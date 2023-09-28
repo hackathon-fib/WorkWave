@@ -34,8 +34,13 @@ const Calendar: React.FC<CalendarProps> = ({ periods }) => {
 
     return (
         <div>
-            <table>
+            <table style={{ width: "100%" }}>
                 <thead>
+                <tr>
+                    <th colSpan={7}>
+                        Date period xxx to yyy
+                    </th>
+                </tr>
                 <tr>
                     <th>Sun</th>
                     <th>Mon</th>
@@ -51,7 +56,7 @@ const Calendar: React.FC<CalendarProps> = ({ periods }) => {
                     <tr key={rowIndex}>
                         {week.map((day, colIndex) => (
                             <td key={colIndex}>
-                                {format(day, 'd')}
+                                {format(day, 'D')}
                                 <div className="periods">
                                     {periods.map((period, periodIndex) => {
                                         if (isWithinPeriod(day, period)) {
