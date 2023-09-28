@@ -1,0 +1,49 @@
+// GET /api/daySchedules
+//Request
+{
+    "date": {
+      "lte": "2023-12-31T23:59:59.999Z",
+      "gte": "2023-01-01T00:00:00.001Z"
+    },
+    "user": {
+      "id": "cln33m24n000d18omdh8g3xj6"
+    }
+  }
+//Response
+  [
+    {
+      "createdAt": "2023-09-28T11:35:08.239Z",
+      "date": "2023-01-02T00:00:00.000Z",
+      "id": "cln33m3m8000n18om3cvhlbdu",
+      "note": "Ver audacia verbum sublime audentia congregatio torrens subvenio.",
+      "status": null,
+      "updatedAt": "2023-09-28T11:35:08.239Z",
+      "user": {
+        "id": "cln33m24n000d18omdh8g3xj6"
+      }
+    },
+    ...
+]
+
+//GET /api/scheduleIntervals
+//Request
+{
+    "daySchedule": {
+      "id": "cln33m3m8000n18om3cvhlbdu"
+    }
+  }
+//Response
+[
+    {
+      "category": "Work period",
+      "createdAt": "2023-09-28T11:35:09.569Z",
+      "daySchedule": {
+        "id": "cln33m3m8000n18om3cvhlbdu"
+      },
+      "end": "2023-01-02T00:00:00.000Z",
+      "id": "cln33m4n601fc18om5k6c5jw8",
+      "label": "cornu",
+      "start": "2023-01-02T00:00:00.000Z",
+      "updatedAt": "2023-09-28T11:35:09.569Z"
+    }
+  ]
