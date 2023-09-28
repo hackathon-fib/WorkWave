@@ -1,10 +1,9 @@
 // import { throwErrors } from './sentry';
 import type { AxiosResponse } from 'axios';
 
-import { client } from './axios/yoodeeClient';
+import { client } from './axios/client';
 import { HTTP_STATUS } from '@/helpers/enums';
 import { useUserStore } from '@/stores/user';
-import { useAppStore } from '@/stores/app';
 
 export interface ApiResponse<T = any> extends AxiosResponse<T> {
   error?: boolean;
@@ -31,9 +30,7 @@ export default async function apiCall<T = any>(
     };
 
     if (addAuth) {
-      config.headers.Authorization = userStore.merchantToken
-        ? `Bearer ${userStore.merchantToken}`
-        : `Bearer ${userStore.token}`;
+      config.headers.Authorization = `Bearer ${userStore.accessToken}`;
     }
 
     if (method === HTTP_STATUS.GET) {

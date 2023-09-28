@@ -66,4 +66,16 @@
 </template>
 
 <script setup lang="ts">
-</script>
+import { useUserStore } from '../stores/user';
+
+const userStore = useUserStore();
+
+definePageMeta({
+  validate: async (route) => {
+    // Check if the id is made up of digits
+    if (!userStore.accessToken) {
+        return false;
+    }
+  }
+})
+</script>../stores/user
