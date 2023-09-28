@@ -3,12 +3,16 @@ import apiCall from '../api'
 
 type UserState = {
   accessToken: String,
+  id: String,
+  username: String,
   loading: Boolean
 }
 
 export const useUserStore = defineStore('user', {
   state: (): UserState => ({
     accessToken: '',
+    id: '',
+    username: '',
     loading: false
   }),
   getters: {},
@@ -22,12 +26,25 @@ export const useUserStore = defineStore('user', {
         //blow up here
       }
 
+      const cookie = useCookie('userAccess');
+      cookie.value = res.data.accessToken;
+
+      this.accessToken = res.data.accessToken;
+      this.id = res.data.id;
+      this.username = res.data.username;
+
       navigateTo('dashboard');
       this.loading = false;
     },
     async resetState() {
       this.loading = false;
       this.accessToken = '';
+    },
+    logout() {
+      this.accessToken = '';
+
+      navigateTo('login');
     }
-  }
+  },
+  persist: true
 });
