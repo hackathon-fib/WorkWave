@@ -4,6 +4,7 @@ import type { AxiosResponse } from 'axios';
 import { client } from './axios/client';
 import { HTTP_STATUS } from '@/helpers/enums';
 import { useUserStore } from '@/stores/user';
+import { useAppStore } from '@/stores/app';
 
 export interface ApiResponse<T = any> extends AxiosResponse<T> {
   error?: boolean;
