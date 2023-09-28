@@ -1,45 +1,24 @@
-import axios, { isAxiosError } from 'axios';
+import axios, { AxiosInstance } from 'axios';
+import router from '@/router';
 
-import { ROUTE_NAME } from '../../helpers/const';
-import router from '../../router';
-import { useUserStore } from '../../store/user';
+const client: AxiosInstance = axios.create();
 
-// Mantle API specific functionality
-
-const client = axios.create();
-client.defaults.baseURL = import.meta.env.VITE_MANTLE_API_URL;
-
-const onError = async (error: unknown): Promise<unknown> => {
-  if (isAxiosError(error)) {
-    // If we've become de-authenticated, then redirect to login immediately, and don't bother with
-    // anything else.
-    if ([401].includes(error.response?.status || -1)) {
-      await useUserStore().logout(false);
-
-      if (!router.currentRoute.value.meta.noRedirectOnAuthError) {
-        await router.push({ name: ROUTE_NAME.LOGIN });
-      }
-
-      // Ensure that no error message box is shown in this scenario.
-      if (error.config?.options) {
-        error.config.options.withErrorMessageBox = false;
-      }
+client.interceptors.response.use(
+  response => {
+    return response;
+  },
+  async error => {
+    if (error?.response?.status === 404) {
+      await router.push('/404');
     }
+
+    return Promise.reject(error);
   }
+);
 
-  return Promise.reject(error);
-};
+// Set the apiUrl to be the apiUrl from the set localStorage config or to the envVariable url
+const apiUrl: string = process.env.API_URL || 'https://api.workwave-onrender.com/';
 
-client.interceptors.request.use(config => {
-  // Add the Mantle API auth token by default
-  if (config.options?.withAccessToken ?? true) {
-    const userStore = useUserStore();
-    config.headers['x-mantle-auth-token'] = userStore.loggedInUser?.tokens[0]?.token;
-  }
-
-  return config;
-}, onError);
-
-client.interceptors.response.use(response => response, onError);
+client.defaults.baseURL = apiUrl;
 
 export { client };
