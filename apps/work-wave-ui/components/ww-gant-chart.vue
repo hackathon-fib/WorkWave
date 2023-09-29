@@ -2,7 +2,7 @@
   <div class="wrapper">
 	<div class="gantt">
 		<div class="gantt__row gantt__row--months">
-			<div class="gantt__row-first"></div>
+			<div class="gantt__row-first">{{ chosenDate }}</div>
 			<span>00-02</span><span>02-04</span><span>04-06</span>
 			<span>06-08</span><span>08-10</span><span>10-12</span>
 			<span>12-14</span><span>14-16</span><span>16-18</span>
@@ -15,23 +15,23 @@
 			<span></span><span></span><span></span>
 		</div>
     <ul>
-      <li class="gantt__row">
+      <li v-for="(user, i) in users" :key="i" class="gantt__row">
           <div class="gantt__row-first">
-            Barnard Posselt
+            {{ `${user.firstName} ${user.lastName}` }}
           </div>
           <ul class="gantt__row-bars">
-            <li style="grid-column: 4/11; background-color: #2ecaac;">Even longer project</li>
+            <li style="grid-column: 4/11; background-color: #2ecaac;">Working Hours</li>
           </ul>
       </li>
     </ul>
-    <div class="gantt__row">
+    <!-- <div class="gantt__row">
       <div class="gantt__row-first">
         Barnard Posselt
       </div>
       <ul class="gantt__row-bars">
         <li style="grid-column: 4/11; background-color: #2ecaac;">Even longer project</li>
       </ul>
-    </div>
+    </div> -->
 		<div class="gantt__row gantt__row--empty">
 			<div class="gantt__row-first">
 				Ryley Huggons
@@ -94,6 +94,10 @@ defineProps({
   users: {
     type: Array,
     default: () => []
+  },
+  chosenDate: {
+    type: String,
+    default: ''
   }
 })
 </script>
