@@ -17,7 +17,7 @@
     <ul>
       <li v-for="(user, i) in users" :key="i" class="gantt__row">
           <div class="gantt__row-first">
-            {{ `${user.firstName} ${user.lastName}` }}
+            {{ `${user.firstName}` }}
           </div>
           <ul class="gantt__row-bars">
             <li style="grid-column: 4/11; background-color: #2ecaac;">Working Hours</li>

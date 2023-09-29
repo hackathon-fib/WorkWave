@@ -46,7 +46,7 @@
                     <img class="w-10 h-10 rounded-full inline-flex ml-3" :src="`https://source.unsplash.com/random?user_avatar?rnd=${Math.random()}`" alt="">
                     <div class="font-medium dark:text-white">
                         <div></div>
-                        <div class="text-sm text-gray-500 dark:text-gray-400">{{ `${vUser.firstName} ${vUser.lastName}` }}</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">{{ `${vUser.firstName}` }}</div>
                     </div>
                 </li>
             </ul>

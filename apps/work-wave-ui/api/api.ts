@@ -3,8 +3,6 @@ import type { AxiosResponse } from 'axios';
 
 import { client } from './axios/client';
 import { HTTP_STATUS } from '@/helpers/enums';
-import { useUserStore } from '../stores/user';
-import { useAppStore } from '../stores/app';
 
 export interface ApiResponse<T = any> extends AxiosResponse<T> {
   error?: boolean;
@@ -57,18 +55,7 @@ export default async function apiCall<T = any>(
 
     return response as ApiResponse<T>;
   } catch (err: any) {
-    const appStore = useAppStore();
     const response: ApiResponse<T> = err?.response || {};
-
-    if (response.status == 401) {
-      appStore.showLoadingModal = false;
-      userStore.resetState();
-    } else if (genericErrorModal && err?.message !== 'canceled') {
-      appStore.errorModal = {
-        showing: true,
-        message: (response?.data as any)?.message || 'There has been an error, please try again or contact your system administrator'
-      };
-    }
 
     response.error = true;
 
