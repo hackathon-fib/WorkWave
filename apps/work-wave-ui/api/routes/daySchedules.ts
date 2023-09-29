@@ -9,7 +9,7 @@ const daySchedules = {
       return await api(HTTP_STATUS.GET, `/api/daySchedules`, data, true);
     },
     async getDayScheduleById(id: String): Promise<ApiResponse> {
-      return await api(HTTP_STATUS.GET, `/api/daySchedules` + id, {}, true);
+      return await api(HTTP_STATUS.GET, `/api/daySchedules/` + id, {}, true);
     },
   },
   post: {
