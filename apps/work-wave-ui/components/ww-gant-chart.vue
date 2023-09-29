@@ -24,6 +24,7 @@
           </ul>
       </li>
     </ul>
+    <template v-if="users.length === 0">
 		<div class="gantt__row gantt__row--empty">
 			<div class="gantt__row-first">
 				Niall
@@ -64,6 +65,7 @@
 				<li style="grid-column: 4/9; background-color: #ff6252;" class="stripes">Working</li>
 			</ul>
 		</div>
+    </template>
 	</div>
 	</div>
 </template>
