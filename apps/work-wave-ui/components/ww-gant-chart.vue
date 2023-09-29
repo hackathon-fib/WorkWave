@@ -11,7 +11,7 @@
 		<div class="gantt__row gantt__row--lines" data-time="5">
 			<span></span><span></span><span></span>
 			<span></span><span></span><span></span>
-			<span></span><span class="marker"></span><span></span>
+			<span class="marker"></span><span></span><span></span>
 			<span></span><span></span><span></span>
 		</div>
     <ul>
@@ -24,67 +24,48 @@
           </ul>
       </li>
     </ul>
-    <!-- <div class="gantt__row">
-      <div class="gantt__row-first">
-        Barnard Posselt
-      </div>
-      <ul class="gantt__row-bars">
-        <li style="grid-column: 4/11; background-color: #2ecaac;">Even longer project</li>
-      </ul>
-    </div> -->
+    <template v-if="users.length === 0">
 		<div class="gantt__row gantt__row--empty">
 			<div class="gantt__row-first">
-				Ryley Huggons
+				Niall
 			</div>
 			<ul class="gantt__row-bars"></ul>
 		</div>
 		<div class="gantt__row">
 			<div class="gantt__row-first">
-				Lanie Erwin
+				Sam
 			</div>
 			<ul class="gantt__row-bars">
-				<li style="grid-column: 2/5; background-color: #2ecaac;">Start Februar 🙌</li>
-				<li style="grid-column: 1/6; background-color: #ff6252;" class="stripes"></li>
-				<li style="grid-column: 7/11; background-color: #54c6f9;">Same line</li>
-			</ul>
-		</div>
-		<div class="gantt__row gantt__row--empty">
-			<div class="gantt__row-first">
-				Krishnah Pauleit
-			</div>
-			<ul class="gantt__row-bars"></ul>
-		</div>
-		<div class="gantt__row gantt__row--empty">
-			<div class="gantt__row-first">
-				Hobard Lampitt
-			</div>
-			<ul class="gantt__row-bars"></ul>
-		</div>
-		<div class="gantt__row">
-			<div class="gantt__row-first">
-				Virgilio Jeanes
-			</div>
-			<ul class="gantt__row-bars">
-				<li style="grid-column: 2/5; background-color: #2ecaac;"></li>
+				<li style="grid-column: 2/6; background-color: #ff6252;" class="stripes">Inital Work</li>
+				<li style="grid-column: 7/11; background-color: #54c6f9;">End Day</li>
 			</ul>
 		</div>
 		<div class="gantt__row">
 			<div class="gantt__row-first">
-				Ky Verick
+				Hayley
 			</div>
 			<ul class="gantt__row-bars">
-				<li style="grid-column: 3/8; background-color: #54c6f9;">Long project</li>
+				<li style="grid-column: 2/5; background-color: #2ecaac;">Morning</li>
+			</ul>
+		</div>
+		<div class="gantt__row">
+			<div class="gantt__row-first">
+				Sagar
+			</div>
+			<ul class="gantt__row-bars">
+				<li style="grid-column: 3/11; background-color: #54c6f9;">Long Day</li>
 			</ul>
 		</div>
 
 		<div class="gantt__row">
 			<div class="gantt__row-first">
-				Ketti Waterworth
+				Mark
 			</div>
 			<ul class="gantt__row-bars">
-				<li style="grid-column: 4/9; background-color: #ff6252;" class="stripes">A title</li>
+				<li style="grid-column: 4/9; background-color: #ff6252;" class="stripes">Working</li>
 			</ul>
 		</div>
+    </template>
 	</div>
 	</div>
 </template>

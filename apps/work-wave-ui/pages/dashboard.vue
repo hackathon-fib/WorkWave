@@ -35,7 +35,7 @@
             </label>
             <select v-model="team" id="teams" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-5">
                 <option selected>Choose a team</option>
-                <option v-for="(tVal, i) in teams" :key="i" :value="tVal.name">{{ tVal.name }}</option>
+                <option v-for="(tVal, i) in teams" :key="i" :value="tVal.id">{{ tVal.name }}</option>
             </select>
             <ul>
                 <li v-for="(vUser, i) in users" key="i" class="mb-5">
@@ -91,7 +91,7 @@ const loadMeetingModal = () => {
 
 const { data: users } = useAsyncData<any>(
   "users",
-  () => usersStore.getUsers(),
+  () => usersStore.getUsers(team.value),
   {
     watch: [team]
   }

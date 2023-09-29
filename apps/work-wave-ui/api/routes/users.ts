@@ -6,7 +6,8 @@ import api from '../api';
 const users = {
   get: {
     async getUsers(data = {}): Promise<ApiResponse> {
-      return await api(HTTP_STATUS.GET, `/api/users`, data, true);
+      const whereClause = `?where%5Bteam%5D[every][id][equals]=${data}`
+      return await api(HTTP_STATUS.GET, `/api/users${data ? whereClause : ''}`, {}, true);
     },
     async getUserById(id: String): Promise<ApiResponse> {
       return await api(HTTP_STATUS.GET, `/api/users` + id, {}, true);
