@@ -27,7 +27,7 @@
                     </div>
                 </client-only>
             </div>
-            <ww-gant-chart :users="users" :chosen-date="selectedDate" />
+            <ww-gant-chart :users="users" :chosen-date="selectedDate" :loading="loading" />
         </div>
         <card class="p-5">
             <label for="teams" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -67,13 +67,16 @@ import Datepicker from 'flowbite-datepicker/Datepicker';
 import { computed, onMounted } from 'vue';
 import { useUserStore } from '../stores/user';
 import { useUsersStore } from '../stores/users';
+import { storeToRefs } from 'pinia';
 
 const userStore = useUserStore();
 const usersStore = useUsersStore();
-const team = ref('')
+const team = ref('');
 const showMeetingModal = ref(false);
 const selectedDate = ref('');
 const datepickerEl = ref(null);
+
+const {loading} = storeToRefs(usersStore)
 
 // const teams = computed(() => {
 //     return ['feeditback', 'yoodee', 'product other', 'front-end', 'back-end', 'testers'];
