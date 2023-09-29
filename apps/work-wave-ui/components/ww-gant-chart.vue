@@ -25,7 +25,7 @@
         </div>
       </div>
     </template>
-    <tempalte v-else-if="users.length">
+    <tempalte v-else-if="users.length > 0">
       <ul>
         <li v-for="(user, i) in users" :key="i" class="gantt__row">
             <div class="gantt__row-first">
@@ -100,7 +100,8 @@ defineProps({
 })
 </script>
 
-<style id="INLINE_PEN_STYLESHEET_ID">@import url("https://fonts.googleapis.com/css?family=Roboto:100,400,700");
+<style>
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,400,700");
 /* body,
 html {
   font-family: "Roboto", sans-serif;
