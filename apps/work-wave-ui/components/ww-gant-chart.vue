@@ -2,26 +2,36 @@
   <div class="wrapper">
 	<div class="gantt">
 		<div class="gantt__row gantt__row--months">
-			<div class="gantt__row-first"></div>
+			<div class="gantt__row-first">{{ chosenDate }}</div>
 			<span>00-02</span><span>02-04</span><span>04-06</span>
 			<span>06-08</span><span>08-10</span><span>10-12</span>
 			<span>12-14</span><span>14-16</span><span>16-18</span>
 			<span>18-20</span><span>20-22</span><span>22-24</span>
 		</div>
-		<div class="gantt__row gantt__row--lines" data-month="5">
+		<div class="gantt__row gantt__row--lines" data-time="5">
 			<span></span><span></span><span></span>
 			<span></span><span></span><span></span>
 			<span></span><span class="marker"></span><span></span>
 			<span></span><span></span><span></span>
 		</div>
-		<div class="gantt__row">
-			<div class="gantt__row-first">
-				Barnard Posselt
-			</div>
-			<ul class="gantt__row-bars">
-				<li style="grid-column: 4/11; background-color: #2ecaac;">Even longer project</li>
-			</ul>
-		</div>
+    <ul>
+      <li v-for="(user, i) in users" :key="i" class="gantt__row">
+          <div class="gantt__row-first">
+            {{ `${user.firstName} ${user.lastName}` }}
+          </div>
+          <ul class="gantt__row-bars">
+            <li style="grid-column: 4/11; background-color: #2ecaac;">Working Hours</li>
+          </ul>
+      </li>
+    </ul>
+    <!-- <div class="gantt__row">
+      <div class="gantt__row-first">
+        Barnard Posselt
+      </div>
+      <ul class="gantt__row-bars">
+        <li style="grid-column: 4/11; background-color: #2ecaac;">Even longer project</li>
+      </ul>
+    </div> -->
 		<div class="gantt__row gantt__row--empty">
 			<div class="gantt__row-first">
 				Ryley Huggons
@@ -79,7 +89,18 @@
 	</div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+defineProps({
+  users: {
+    type: Array,
+    default: () => []
+  },
+  chosenDate: {
+    type: String,
+    default: ''
+  }
+})
+</script>
 
 <style id="INLINE_PEN_STYLESHEET_ID">@import url("https://fonts.googleapis.com/css?family=Roboto:100,400,700");
 /* body,

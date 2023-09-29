@@ -18,12 +18,27 @@ export const useUsersStore = defineStore('users', {
     async getUsers() {
       this.loading = true;
 
-      const res = await apiCall.auth.post.login({username, password});
+      const res = await apiCall.users.get.getUsers();
 
       if (!res) {
         //blow up here
       }
 
+      this.users = res.data;
+      this.loading = false;
+
+      return res.data
+    },
+    async getUsersForTeam() {
+      this.loading = true;
+
+      const res = await apiCall.users.get.getUsers();
+
+      if (!res) {
+        //blow up here
+      }
+
+      this.users = res.data;
       this.loading = false;
 
       return res.data
@@ -31,13 +46,15 @@ export const useUsersStore = defineStore('users', {
     async getTeams() {
       this.loading = true;
 
-      const res = await apiCall.auth.post.login({username, password});
+      const res = await apiCall.teams.get.getTeams();
 
       if (!res) {
+        console.info(res);
         //blow up here
       }
 
       this.loading = false;
+      this.teams = res.data;
 
       return res.data
     }

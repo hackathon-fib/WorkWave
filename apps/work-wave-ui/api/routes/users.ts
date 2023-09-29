@@ -6,15 +6,15 @@ import api from '../api';
 const users = {
   get: {
     async getUsers(data = {}): Promise<ApiResponse> {
-      return await api(HTTP_STATUS.GET, `/api/users`, data);
+      return await api(HTTP_STATUS.GET, `/api/users`, data, true);
     },
     async getUserById(id: String): Promise<ApiResponse> {
-      return await api(HTTP_STATUS.GET, `/api/users` + id);
+      return await api(HTTP_STATUS.GET, `/api/users` + id, {}, true);
     }
   },
   post: {
     async createUser(data = {}): Promise<ApiResponse> {
-      return await api(HTTP_STATUS.POST, `/api/users`, data);
+      return await api(HTTP_STATUS.POST, `/api/users`, data, true);
     },
   }
 };
