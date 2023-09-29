@@ -39,15 +39,16 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useUserStore } from '../stores/user';
-import { storeToRefs } from 'pinia';
 
 const userStore = useUserStore();
-const { loading } = storeToRefs(userStore);
 
 const username = ref('');
 const password = ref('');
+const loading = ref(false);
 
 const submit = async () => {
+  loading.value = true;
   await userStore.login(username.value, password.value);
+  loading.value = false;
 }
 </script>
