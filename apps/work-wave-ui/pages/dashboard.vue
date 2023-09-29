@@ -27,7 +27,7 @@
                     </div>
                 </client-only>
             </div>
-            <ww-gant-chart :users="users" :chosen-date="selectedDate" />
+            <ww-gant-chart :users="users" :chosen-date="selectedDate" :loading="loading" />
         </div>
         <card class="p-5">
             <label for="teams" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -70,10 +70,11 @@ import { useUsersStore } from '../stores/users';
 
 const userStore = useUserStore();
 const usersStore = useUsersStore();
-const team = ref('')
+const team = ref('');
 const showMeetingModal = ref(false);
 const selectedDate = ref('');
 const datepickerEl = ref(null);
+const loading = ref(false);
 
 // const teams = computed(() => {
 //     return ['feeditback', 'yoodee', 'product other', 'front-end', 'back-end', 'testers'];
@@ -91,7 +92,11 @@ const loadMeetingModal = () => {
 
 const { data: users } = useAsyncData<any>(
   "users",
-  () => usersStore.getUsers(team.value),
+  async () => {
+    loading.value = true;
+    await usersStore.getUsers(team.value)
+    loading.value = false;
+  },
   {
     watch: [team]
   }

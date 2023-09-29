@@ -1,3 +1,4 @@
+import { DaySchedule } from './../../work-wave-admin/src/api/daySchedule/DaySchedule';
 import { defineStore, getActivePinia } from 'pinia';
 import apiCall from '../api'
 
@@ -26,7 +27,14 @@ export const useUsersStore = defineStore('users', {
 
       this.users = res.data;
 
-      const dayScheduleRes = await apiCall.daySchedules.get.getDaySchedules();
+      try {
+        this.users.forEach(async (user: any, i) => {
+          const dayScheduleRes = await apiCall.daySchedules.get.getDaySchedules(user.id);
+          this.users[i].DaySchedule = dayScheduleRes.data;
+        });
+      } catch(err) {
+        console.error(err);
+      }
       // this.users.forEach(async (user, i) => {
       //   // const daySchedule = await apiCall.daySchedules.get.getDayScheduleById(user.id);
       //   this.users[i].daySchedule = dayScheduleRes.data;
