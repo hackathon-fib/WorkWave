@@ -67,6 +67,7 @@ import Datepicker from 'flowbite-datepicker/Datepicker';
 import { computed, onMounted } from 'vue';
 import { useUserStore } from '../stores/user';
 import { useUsersStore } from '../stores/users';
+import { storeToRefs } from 'pinia';
 
 const userStore = useUserStore();
 const usersStore = useUsersStore();
@@ -74,7 +75,8 @@ const team = ref('');
 const showMeetingModal = ref(false);
 const selectedDate = ref('');
 const datepickerEl = ref(null);
-const loading = ref(false);
+
+const {loading} = storeToRefs(usersStore)
 
 // const teams = computed(() => {
 //     return ['feeditback', 'yoodee', 'product other', 'front-end', 'back-end', 'testers'];
@@ -92,11 +94,7 @@ const loadMeetingModal = () => {
 
 const { data: users } = useAsyncData<any>(
   "users",
-  async () => {
-    loading.value = true;
-    await usersStore.getUsers(team.value)
-    loading.value = false;
-  },
+  () => usersStore.getUsers(team.value),
   {
     watch: [team]
   }
