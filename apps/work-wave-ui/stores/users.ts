@@ -15,24 +15,31 @@ export const useUsersStore = defineStore('users', {
   }),
   getters: {},
   actions: {
-    async getUsers() {
+    async getUsers(team) {
       this.loading = true;
 
-      const res = await apiCall.users.get.getUsers();
+      const res = await apiCall.users.get.getUsers(team);
 
       if (!res) {
         //blow up here
       }
 
       this.users = res.data;
+
+      const dayScheduleRes = await apiCall.daySchedules.get.getDaySchedules();
+      // this.users.forEach(async (user, i) => {
+      //   // const daySchedule = await apiCall.daySchedules.get.getDayScheduleById(user.id);
+      //   this.users[i].daySchedule = dayScheduleRes.data;
+      // });
+
       this.loading = false;
 
       return res.data
     },
-    async getUsersForTeam() {
+    async getUsersForTeam(teamId: String) {
       this.loading = true;
 
-      const res = await apiCall.users.get.getUsers();
+      const res = await apiCall.users.get.getUsers({"company": {"id": teamId}});
 
       if (!res) {
         //blow up here
